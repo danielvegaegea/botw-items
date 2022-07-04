@@ -1,46 +1,13 @@
-# Getting Started with Create React App and Redux
+# Read me
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Introducción
 
-## Available Scripts
+La idea de este proyecto es, dada esta [api](https://gadhagod.github.io/Hyrule-Compendium-API/#/), realizar una página usando React, Redux y cumpliendo los requisitos del curso realizado para **General Assembly**.
 
-In the project directory, you can run:
+![Page Scaffolding](/info/assets/Project.png 'Page scaffolding')
 
-### `yarn start`
+Como puede apreciarse en la imagen, la idea es contar con una '_landing page_', la página de trabajo, que llamaremos '_chest_' y un '_about_' donde se informará debidamente del proyecto.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+En _chest_, contaremos con un _drop-down_ donde podremos elegir el tipo de elemento que queremos ver y un cuadro de texto donde buscar palabras clave. Adicionalmente, y si el tiempo lo permite, trataremos de pormenorizar los datos en un segundo _drop-down_ que no forma parte de la api inicial y que requeriría compartimentarlo a mano. En el ejemplo de la imagen, el usuario ha seleccionado _swords_, que forma parte del equipo que podremos encontrar en el juego.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Las cuatro webs, siendo la cuarta dinámica y distinta para cada elemento que el usuario quiera ver, serán controladas por _React Router_. Se usará _React Helmet_ para generar un head independiente a cada página y _Styled Components_ para añadir estilos por componentes (como su nombre indica). Los Test, requeridos para el proyecto, también serán realizados con lo que ya viene incluido.
