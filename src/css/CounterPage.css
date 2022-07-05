@@ -1,8 +1,8 @@
-.App {
+.counter-page {
   text-align: center;
 }
 
-.App-logo {
+.counter-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+.counter-page-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   font-size: calc(10px + 2vmin);
 }
 
-.App-link {
+.counter-link {
   color: rgb(112, 76, 182);
 }
 
