@@ -1,10 +1,11 @@
-import HomepageText from '!@mdx-js/loader!../assets/markdown/HomepageText.mdx';
+//import HomepageText from '../assets/markdown/HomepageText.mdx';
 
 const Homepage = () => {
   return (
     <>
       <div>
-        <HomepageText />
+        {/* <HomepageText /> */}
+        Text
       </div>
     </>
   );
