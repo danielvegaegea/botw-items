@@ -9,6 +9,10 @@
 - [Styled Components](https://styled-components.com/)
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 
+## Assets
+
+[Breath of the Wild logo](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild)
+
 ## Discarded
 
 - [MDX-Js - Markdown for the Component Era](https://mdxjs.com/)
