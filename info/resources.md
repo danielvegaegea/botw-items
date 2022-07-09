@@ -11,7 +11,7 @@
 
 ## Assets
 
-[Breath of the Wild logo](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild)
+[Breath of the Wild logo and icon](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild)
 
 ## Discarded
 
