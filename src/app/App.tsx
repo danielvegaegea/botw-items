@@ -9,6 +9,7 @@ import About from '../pages/Abuout';
 // Pages
 import Homepage from '../pages/Homepage';
 import CounterPage from '../pages/CounterPage';
+import CompendiumPage from '../pages/CompendiumPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/counter-page" element={<CounterPage />} />
         <Route path="/vade-mecum" element={<VadeMecum />} />
         <Route path="/about" element={<About />} />
+        <Route path="/compendium/:isoCode" element={<CompendiumPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <BotwFooter />

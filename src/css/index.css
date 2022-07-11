@@ -14,9 +14,13 @@ code {
 
 .root {
   color: white;
+  display: flex;
 }
 
 .background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: aqua;
   background-image: url(../assets/jpg/background.jpg);
   /* position: fixed; */
