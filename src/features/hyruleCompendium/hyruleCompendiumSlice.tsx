@@ -1,53 +1,58 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type State = {
-  compendium: [];
-  elementsToRender: [];
-  error: boolean;
+export interface State {
+  compendium: string;
+  elementsToRender: string;
+  error: string | boolean;
   search: string;
   category: string;
-};
+}
+
+interface Action {
+  payload: string;
+  type: string;
+}
 
 const initialState: State = {
-  compendium: [],
-  elementsToRender: [],
-  error: false,
+  compendium: '',
+  elementsToRender: '',
+  error: '',
   search: '',
   category: 'All',
 };
 
-export const hyruleCompendiumSlice = createSlice({
-  name: 'compendiumElement',
+export const compendiumSlice = createSlice({
+  name: 'hyruleCompendium ',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    setElementsFromData: (state, action) => {
+    setCompendiumFromData: (state: State, action: Action) => {
       state.compendium = action.payload;
       state.elementsToRender = action.payload;
     },
-    setError: (state) => {
+    setError: (state: State) => {
       state.error = true;
     },
-    setCategory: (state, action) => {
+    setCategory: (state: State, action: Action) => {
       state.category = action.payload;
     },
-    setElementsToRender: (state, action) => {
+    setElementsToRender: (state: State, action: Action) => {
       state.elementsToRender = action.payload;
     },
-    setSearch: (state, action) => {
+    setSearch: (state: State, action: Action) => {
       state.search = action.payload;
     },
   },
 });
 
 export const {
-  setElementsFromData,
+  setCompendiumFromData,
   setError,
   setCategory,
   setElementsToRender,
   setSearch,
-} = hyruleCompendiumSlice.actions;
+} = compendiumSlice.actions;
 
-export const selectCompendiumElement = (state: State) => state.compendium;
+export const selectCompendium = (state: State) => state.compendium;
 
-export default hyruleCompendiumSlice.reducer;
+export default compendiumSlice.reducer;
