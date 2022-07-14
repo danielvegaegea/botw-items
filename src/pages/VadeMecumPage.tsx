@@ -21,7 +21,7 @@ const getCompendium = async () => {
 };
 
 const VadeMecum = () => {
-  // const compendiumState = useAppSelector(selectCompendium);
+  const compendiumState = useAppSelector(selectCompendium);
   const { error } = useAppSelector(selectCompendium);
 
   const dispatch = useAppDispatch();
@@ -29,7 +29,6 @@ const VadeMecum = () => {
   const fetchCompendium = async () => {
     try {
       const data = await getCompendium();
-
       dispatch(setCompendiumFromData(data));
     } catch (error) {
       dispatch(setError());
@@ -38,17 +37,20 @@ const VadeMecum = () => {
 
   useEffect(() => {
     fetchCompendium();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
-  return error ? (
+  return (
     <>
-      <h2>
-        {' '}
-        ERROR <span role="img">💥</span>
-      </h2>
+      {[error] ? (
+        <h2>
+          {' '}
+          ERROR <span role="img">💥</span>
+        </h2>
+      ) : (
+        <p>blah</p>
+      )}
     </>
-  ) : null;
+  );
 };
 
 export default VadeMecum;
