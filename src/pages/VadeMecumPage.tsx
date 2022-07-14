@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+
 import {
   selectCompendium,
   setCompendiumFromData,
   setError,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
+import { BOTWCompendiumResponseData } from '../types';
 
 const getCompendium = async () => {
   try {
     const response = await fetch(
       'https://botw-compendium.herokuapp.com/api/v2',
     );
-    const compendium = await response.json();
+    const compendium = (await response.json()) as BOTWCompendiumResponseData;
     return compendium;
   } catch (error) {
     throw error;
@@ -19,8 +21,10 @@ const getCompendium = async () => {
 };
 
 const VadeMecum = () => {
-  const compendiumState = useSelector(selectCompendium);
-  const dispatch = useDispatch();
+  // const compendiumState = useAppSelector(selectCompendium);
+  const { error } = useAppSelector(selectCompendium);
+
+  const dispatch = useAppDispatch();
 
   const fetchCompendium = async () => {
     try {
@@ -34,18 +38,17 @@ const VadeMecum = () => {
 
   useEffect(() => {
     fetchCompendium();
-  }, [compendiumState.error]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
-  return (
+  return error ? (
     <>
-      {compendiumState.error ? (
-        <h2>
-          {' '}
-          ERROR <span role="img">💥</span>
-        </h2>
-      ) : null}
+      <h2>
+        {' '}
+        ERROR <span role="img">💥</span>
+      </h2>
     </>
-  );
+  ) : null;
 };
 
 export default VadeMecum;

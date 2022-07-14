@@ -15,7 +15,7 @@ import './css/index.css';
 
 // Router
 //import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 /* JS importing disabled
 const container = document.getElementById('root');

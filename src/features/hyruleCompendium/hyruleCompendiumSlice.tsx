@@ -1,45 +1,48 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
+import type { BOTWCompendiumResponseData, Category } from '../../types';
 
 export interface State {
-  compendium: string;
-  elementsToRender: string;
+  compendium: null | BOTWCompendiumResponseData;
+  elementsToRender: null | BOTWCompendiumResponseData;
   error: string | boolean;
   search: string;
   category: string;
 }
 
-interface Action {
-  payload: string;
-  type: string;
-}
-
 const initialState: State = {
-  compendium: '',
-  elementsToRender: '',
+  compendium: null,
+  elementsToRender: null,
   error: '',
   search: '',
   category: 'All',
 };
 
 export const compendiumSlice = createSlice({
-  name: 'hyruleCompendium ',
+  name: 'compendium',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    setCompendiumFromData: (state: State, action: Action) => {
+    setCompendiumFromData: (
+      state: State,
+      action: PayloadAction<BOTWCompendiumResponseData>,
+    ) => {
       state.compendium = action.payload;
       state.elementsToRender = action.payload;
     },
     setError: (state: State) => {
       state.error = true;
     },
-    setCategory: (state: State, action: Action) => {
+    setCategory: (state: State, action: PayloadAction<Category>) => {
       state.category = action.payload;
     },
-    setElementsToRender: (state: State, action: Action) => {
+    setElementsToRender: (
+      state: State,
+      action: PayloadAction<BOTWCompendiumResponseData>,
+    ) => {
       state.elementsToRender = action.payload;
     },
-    setSearch: (state: State, action: Action) => {
+    setSearch: (state: State, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
   },
@@ -53,6 +56,6 @@ export const {
   setSearch,
 } = compendiumSlice.actions;
 
-export const selectCompendium = (state: State) => state.compendium;
+export const selectCompendium = (state: RootState) => state.compendium;
 
 export default compendiumSlice.reducer;

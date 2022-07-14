@@ -1,7 +1,7 @@
 //import HomepageText from '../assets/markdown/HomepageText.mdx';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import botwLogo from '../assets/svg/botw-logo.svg';
 import styled from 'styled-components';
 

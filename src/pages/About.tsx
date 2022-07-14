@@ -1,8 +1,6 @@
+import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Helmet } from 'react-helmet';
-import botwLogo from '../assets/svg/botw-logo.svg';
-import styled from 'styled-components';
 
 const markdownText = `
 # Presentación
@@ -33,7 +31,7 @@ const About = () => {
     <>
       <Helmet>
         <title>BOTW Vade Mecum: About</title>
-      </Helmet>{' '}
+      </Helmet>
       <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
     </>
   );
