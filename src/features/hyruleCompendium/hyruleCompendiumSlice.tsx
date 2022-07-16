@@ -4,6 +4,7 @@ import type { BOTWCompendiumResponseData, Category } from '../../types';
 
 export interface State {
   compendium: null | BOTWCompendiumResponseData;
+  //compendiumArray: null | BOTWCompendiumArray;
   elementsToRender: null | BOTWCompendiumResponseData;
   error: string | boolean;
   search: string;
@@ -12,6 +13,7 @@ export interface State {
 
 const initialState: State = {
   compendium: null,
+  //compendiumArray: null,
   elementsToRender: null,
   error: '',
   search: '',
