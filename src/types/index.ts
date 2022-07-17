@@ -1,4 +1,4 @@
-export type Category =
+export type T_Category =
   | 'all'
   | 'food'
   | 'non_food'
@@ -7,32 +7,38 @@ export type Category =
   | 'monsters'
   | 'treasure';
 
-export type BOTWCompendiumResponseData = {
+export type T_ElementPage = {
+  c_name: string;
+  c_imgSrc: string;
+  c_id: number;
+};
+
+export type T_BOTWCompendiumResponseData = {
   data: Data;
 };
 
-export type BOTWCompendiumArray = [] | null;
+export type T_BOTWCompendiumArray = [] | null;
 
-export type CompendiumElement =
-  | Food
-  | NonFood
-  | Equipment
-  | Material
-  | Monster
-  | Treasure;
+export type T_CompendiumElement =
+  | T_Food
+  | T_NonFood
+  | T_Equipment
+  | T_Material
+  | T_Monster
+  | T_Treasure;
 
 type Data = {
   creatures: {
-    food: Food[];
-    non_food: NonFood[];
+    food: T_Food[];
+    non_food: T_NonFood[];
   };
-  equipment: Equipment[];
-  materials: Material[];
-  monsters: Monster[];
-  treasure: Treasure[];
+  equipment: T_Equipment[];
+  materials: T_Material[];
+  monsters: T_Monster[];
+  treasure: T_Treasure[];
 };
 
-type Food = {
+type T_Food = {
   category: string;
   common_locations: string[];
   cooking_effect: string;
@@ -43,7 +49,7 @@ type Food = {
   name: string;
 };
 
-type NonFood = {
+type T_NonFood = {
   category: string;
   common_locations: string[];
   description: string;
@@ -53,7 +59,7 @@ type NonFood = {
   name: string;
 };
 
-type Equipment = {
+type T_Equipment = {
   attack: number;
   category: string;
   common_locations: string[];
@@ -64,7 +70,7 @@ type Equipment = {
   name: string;
 };
 
-type Material = {
+type T_Material = {
   category: string;
   common_locations: string[];
   cooking_effect: string;
@@ -75,7 +81,7 @@ type Material = {
   name: string;
 };
 
-type Monster = {
+type T_Monster = {
   category: string;
   common_locations: string[];
   description: string;
@@ -85,7 +91,7 @@ type Monster = {
   name: string;
 };
 
-type Treasure = {
+type T_Treasure = {
   category: string;
   common_locations: string[];
   description: string;

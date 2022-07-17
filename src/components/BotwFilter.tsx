@@ -9,7 +9,11 @@ import {
   setSearch,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 
-import { BOTWCompendiumArray, CompendiumElement, Category } from '../types';
+import {
+  T_BOTWCompendiumArray,
+  T_CompendiumElement,
+  T_Category,
+} from '../types';
 
 const CompendiumFilter = () => {
   // Generates an array with all 389 elements from the compendium and stores it in
@@ -32,8 +36,10 @@ const CompendiumFilter = () => {
           ...compendiumData.materials,
           ...compendiumData.monsters,
           ...compendiumData.treasure,
-        ] as BOTWCompendiumArray)
+        ] as T_BOTWCompendiumArray)
       : null;
+    console.log('OK Array');
+    completeArray && console.log(completeArray);
     dispatch(setElementsInArray(completeArray));
     //miArray && console.log('miArray');
     //miArray && console.log(miArray);
@@ -44,6 +50,11 @@ const CompendiumFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
+  /* useEffect(() => {
+    dispatch(setElementsToRender(compendiumState.compendiumArray));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
+ */
   const getFilteredCompendium = ({
     // Obtenemos los valores search y region de sus estados.
     search = compendiumState.search,
@@ -55,7 +66,7 @@ const CompendiumFilter = () => {
 
     const filteredCompendium = compendiumState.compendiumArray
       ? (compendiumState.compendiumArray.filter(
-          (cElement: CompendiumElement) => {
+          (cElement: T_CompendiumElement) => {
             // Filtramos propiamente el compendio y los devolvemos.
             return (
               (searchString.test(cElement.name) &&
@@ -63,8 +74,8 @@ const CompendiumFilter = () => {
               category === 'All'
             );
           },
-        ) as BOTWCompendiumArray)
-      : ([] as BOTWCompendiumArray);
+        ) as T_BOTWCompendiumArray)
+      : ([] as T_BOTWCompendiumArray);
     return filteredCompendium;
   };
 
@@ -78,13 +89,13 @@ const CompendiumFilter = () => {
     } = event;
 
     // El valor lo agrego al estado global y lo asigno a propiedad region
-    dispatch(setCategory(value as Category));
+    dispatch(setCategory(value as T_Category));
 
     // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
     // y devolvemos solo los paises que cumplan el filtro.
     const filteredCompendium = getFilteredCompendium({
       category: value,
-    }) as BOTWCompendiumArray;
+    }) as T_BOTWCompendiumArray;
 
     // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
     dispatch(setElementsToRender(filteredCompendium));
@@ -105,7 +116,7 @@ const CompendiumFilter = () => {
     // y devolvemos solo los paises que cumplan el filtro
     const filteredCompendium = getFilteredCompendium({
       search: value,
-    }) as BOTWCompendiumArray;
+    }) as T_BOTWCompendiumArray;
 
     // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
     dispatch(setElementsToRender(filteredCompendium));
