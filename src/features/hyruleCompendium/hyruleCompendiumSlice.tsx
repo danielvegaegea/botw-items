@@ -1,10 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import type { BOTWCompendiumResponseData, Category } from '../../types';
+import type {
+  BOTWCompendiumResponseData,
+  BOTWCompendiumArray,
+  Category,
+} from '../../types';
 
 export interface State {
   compendium: null | BOTWCompendiumResponseData;
-  //compendiumArray: null | BOTWCompendiumArray;
+  compendiumArray: null | BOTWCompendiumArray;
   elementsToRender: null | BOTWCompendiumResponseData;
   error: string | boolean;
   search: string;
@@ -13,7 +17,7 @@ export interface State {
 
 const initialState: State = {
   compendium: null,
-  //compendiumArray: null,
+  compendiumArray: null,
   elementsToRender: null,
   error: '',
   search: '',
@@ -44,6 +48,12 @@ export const compendiumSlice = createSlice({
     ) => {
       state.elementsToRender = action.payload;
     },
+    setElementsInArray: (
+      state: State,
+      action: PayloadAction<BOTWCompendiumArray>,
+    ) => {
+      state.compendiumArray = action.payload;
+    },
     setSearch: (state: State, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
@@ -55,6 +65,7 @@ export const {
   setError,
   setCategory,
   setElementsToRender,
+  setElementsInArray,
   setSearch,
 } = compendiumSlice.actions;
 

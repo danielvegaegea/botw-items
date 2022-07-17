@@ -10,7 +10,7 @@ export type BOTWCompendiumResponseData = {
   data: Data;
 };
 
-export type BOTWCompendiumArray = [];
+export type BOTWCompendiumArray = [] | null;
 
 type Data = {
   creatures: {

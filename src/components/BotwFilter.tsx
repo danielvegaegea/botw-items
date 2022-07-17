@@ -3,16 +3,46 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import {
   selectCompendium,
+  setElementsInArray,
   setCategory,
   setElementsToRender,
   setSearch,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 
-import { BOTWCompendiumResponseData } from '../types';
+import { BOTWCompendiumResponseData, BOTWCompendiumArray } from '../types';
 
 const CompendiumFilter = () => {
+  // Generates an array with all 389 elements from the compendium and stores it in
+  // BOTWCompendiumArray for use in the "all" category.
+
   const compendiumState = useAppSelector(selectCompendium);
   const dispatch = useAppDispatch();
+  const { error } = useAppSelector(selectCompendium);
+
+  const makeCompendiumArray = () => {
+    const compendiumData = compendiumState.compendium
+      ? compendiumState.compendium?.data
+      : null;
+
+    const completeArray = compendiumData
+      ? ([
+          ...compendiumData.creatures.food,
+          ...compendiumData.creatures.non_food,
+          ...compendiumData.equipment,
+          ...compendiumData.materials,
+          ...compendiumData.monsters,
+          ...compendiumData.treasure,
+        ] as BOTWCompendiumArray)
+      : null;
+    dispatch(setElementsInArray(completeArray));
+    //miArray && console.log('miArray');
+    //miArray && console.log(miArray);
+  };
+
+  useEffect(() => {
+    makeCompendiumArray();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
   /*   const getFilteredCompendium = ({
     // Obtenemos los valores search y region de sus estados.

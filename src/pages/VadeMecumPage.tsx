@@ -34,7 +34,7 @@ const VadeMecum = () => {
       const data = await getCompendium();
       dispatch(setCompendiumFromData(data));
       //console.log(data.data);
-      console.log(data.data.monsters);
+      //console.log(data.data.monsters);
     } catch (error) {
       console.log(error);
       dispatch(setError());
