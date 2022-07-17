@@ -58,9 +58,9 @@ const CompendiumFilter = () => {
           (cElement: CompendiumElement) => {
             // Filtramos propiamente el compendio y los devolvemos.
             return (
-              /* (searchString.test(country.name.common) ||
-            searchString.test(nativeName)) && */
-              cElement.category === category || category === 'All'
+              (searchString.test(cElement.name) &&
+                cElement.category === category) ||
+              category === 'All'
             );
           },
         ) as BOTWCompendiumArray)
@@ -90,7 +90,7 @@ const CompendiumFilter = () => {
     dispatch(setElementsToRender(filteredCompendium));
   };
 
-  /* const handleKeyUp = (event) => {
+  const handleKeyUp = (event: ChangeEvent<HTMLInputElement>) => {
     // Actualiza el cambio en Search en el estado y luego actualiza el estado de
     // filtered para que lo muestre al renderizar en su correspondiente componente.
 
@@ -103,25 +103,19 @@ const CompendiumFilter = () => {
 
     // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
     // y devolvemos solo los paises que cumplan el filtro
-    const filteredCountries = getFilteredCountries({
+    const filteredCompendium = getFilteredCompendium({
       search: value,
-    });
+    }) as BOTWCompendiumArray;
 
     // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
-    dispatch(setCountriesToRender(filteredCountries));
-  }; */
+    dispatch(setElementsToRender(filteredCompendium));
+  };
 
   return (
     <header>
       <h1>Compendium</h1>
       <form>
         <label htmlFor="categories">Categories</label>
-        {/* 2. Espera que el evento change pase, si pasa dispara la funcion que esta
-           asociada como valor al evento en sintaxis JSX.
-
-            elemento.addEventlistener('change', handleOnChange)
-        */}
-        {/* <select name="categories" id="categories"> */}
         <select name="categories" id="categories" onChange={handleOnChange}>
           <option value="all">All</option>
           <option value="food">Creatures (food)</option>
@@ -132,11 +126,8 @@ const CompendiumFilter = () => {
           <option value="treasure">Treasure</option>
         </select>
         <label>Seach</label>
-        {/* 2 Espera que el evento keyup pase, si pasa dispara la funcion que esta asociada
-           como valor al evento en sintaxis JSX
-        */}
-        <input type="search" placeholder="search" />
-        {/* <input type="search" placeholder="search" onKeyUp={handleKeyUp} /> */}
+        {/* <input type="search" placeholder="search" /> */}
+        <input type="search" placeholder="search" onKeyUp={handleKeyUp} />
       </form>
     </header>
   );
