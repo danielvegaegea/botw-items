@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import {
@@ -9,7 +9,7 @@ import {
   setSearch,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 
-import { BOTWCompendiumResponseData, BOTWCompendiumArray } from '../types';
+import { BOTWCompendiumArray, CompendiumElement, Category } from '../types';
 
 const CompendiumFilter = () => {
   // Generates an array with all 389 elements from the compendium and stores it in
@@ -54,37 +54,82 @@ const CompendiumFilter = () => {
     const searchString = new RegExp(search, 'i');
 
     const filteredCompendium = compendiumState.compendiumArray
-      ? compendiumState.compendiumArray.filter((element) => {
-          // Filtramos propiamente el compendio y los devolvemos.
-          return (
-            /* (searchString.test(country.name.common) ||
+      ? (compendiumState.compendiumArray.filter(
+          (cElement: CompendiumElement) => {
+            // Filtramos propiamente el compendio y los devolvemos.
+            return (
+              /* (searchString.test(country.name.common) ||
             searchString.test(nativeName)) && */
-            //element.category === category || category === 'All'
-            console.log(element)
-          );
-        })
-      : [];
+              cElement.category === category || category === 'All'
+            );
+          },
+        ) as BOTWCompendiumArray)
+      : ([] as BOTWCompendiumArray);
     return filteredCompendium;
   };
+
+  const handleOnChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    // Actualiza el cambio en Región en el estado y luego actualiza el estado de
+    // filtered para que lo muestre al renderizar en su correspondiente componente.
+
+    // Deconstruyendo el objeto de evento para obtener el valor que usario eligio
+    const {
+      target: { value },
+    } = event;
+
+    // El valor lo agrego al estado global y lo asigno a propiedad region
+    dispatch(setCategory(value as Category));
+
+    // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
+    // y devolvemos solo los paises que cumplan el filtro.
+    const filteredCompendium = getFilteredCompendium({
+      category: value,
+    }) as BOTWCompendiumArray;
+
+    // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
+    dispatch(setElementsToRender(filteredCompendium));
+  };
+
+  /* const handleKeyUp = (event) => {
+    // Actualiza el cambio en Search en el estado y luego actualiza el estado de
+    // filtered para que lo muestre al renderizar en su correspondiente componente.
+
+    // Deconstruyendo el objeto de evento para obtener el valor que usario tipeo
+    const {
+      target: { value },
+    } = event;
+    // El valor lo agrego al estado global y lo asigno a propiedad search
+    dispatch(setSearch(value));
+
+    // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
+    // y devolvemos solo los paises que cumplan el filtro
+    const filteredCountries = getFilteredCountries({
+      search: value,
+    });
+
+    // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
+    dispatch(setCountriesToRender(filteredCountries));
+  }; */
+
   return (
     <header>
-      <h1>Country flags</h1>
+      <h1>Compendium</h1>
       <form>
-        <label htmlFor="categories">Regions</label>
+        <label htmlFor="categories">Categories</label>
         {/* 2. Espera que el evento change pase, si pasa dispara la funcion que esta
            asociada como valor al evento en sintaxis JSX.
 
             elemento.addEventlistener('change', handleOnChange)
         */}
-        <select name="categories" id="categories">
-          {/* <select name="regions" id="regions" onChange={handleOnChange}></select> */}
-          <option>All</option>
-          <option>Creatures (food)</option>
-          <option>Creatures (non food)</option>
-          <option>Equipment</option>
-          <option>Materials</option>
-          <option>Monsters</option>
-          <option>Treasure</option>
+        {/* <select name="categories" id="categories"> */}
+        <select name="categories" id="categories" onChange={handleOnChange}>
+          <option value="all">All</option>
+          <option value="food">Creatures (food)</option>
+          <option value="non_food">Creatures (non food)</option>
+          <option value="equipment">Equipment</option>
+          <option value="materials">Materials</option>
+          <option value="monsters">Monsters</option>
+          <option value="treasure">Treasure</option>
         </select>
         <label>Seach</label>
         {/* 2 Espera que el evento keyup pase, si pasa dispara la funcion que esta asociada

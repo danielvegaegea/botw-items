@@ -9,7 +9,7 @@ import type {
 export interface State {
   compendium: null | BOTWCompendiumResponseData;
   compendiumArray: null | BOTWCompendiumArray;
-  elementsToRender: null | BOTWCompendiumResponseData;
+  elementsToRender: null | BOTWCompendiumArray;
   error: string | boolean;
   search: string;
   category: string;
@@ -34,7 +34,7 @@ export const compendiumSlice = createSlice({
       action: PayloadAction<BOTWCompendiumResponseData>,
     ) => {
       state.compendium = action.payload;
-      state.elementsToRender = action.payload;
+      //state.elementsToRender = action.payload;
     },
     setError: (state: State) => {
       state.error = true;
@@ -44,7 +44,7 @@ export const compendiumSlice = createSlice({
     },
     setElementsToRender: (
       state: State,
-      action: PayloadAction<BOTWCompendiumResponseData>,
+      action: PayloadAction<BOTWCompendiumArray>,
     ) => {
       state.elementsToRender = action.payload;
     },

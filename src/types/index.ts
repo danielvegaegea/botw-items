@@ -1,4 +1,5 @@
 export type Category =
+  | 'all'
   | 'food'
   | 'non_food'
   | 'equipment'
@@ -11,6 +12,14 @@ export type BOTWCompendiumResponseData = {
 };
 
 export type BOTWCompendiumArray = [] | null;
+
+export type CompendiumElement =
+  | Food
+  | NonFood
+  | Equipment
+  | Material
+  | Monster
+  | Treasure;
 
 type Data = {
   creatures: {
