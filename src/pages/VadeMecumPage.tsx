@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
 import {
   selectCompendium,
@@ -13,7 +13,7 @@ import {
   T_BOTWCompendiumResponseData,
   T_BOTWCompendiumArray,
   T_CompendiumElement,
-  T_ElementPage,
+  T_ElementPropPage,
 } from '../types';
 
 import CompendiumFilter from '../components/BotwFilter';
@@ -32,9 +32,9 @@ const getCompendium = async () => {
   }
 };
 
-const StyledCompendiumElement = styled(CompendiumElementPage)`
+/* const StyledCompendiumElement = styled(CompendiumElementPage)`
   border: 2px solid red;
-`;
+`; */
 
 const VadeMecum = () => {
   const compendiumState = useAppSelector(selectCompendium);
@@ -124,7 +124,7 @@ const VadeMecum = () => {
         </h2>
       ) : null}
 
-      {/* {compendiumState.elementsToRender &&
+      {compendiumState.elementsToRender &&
         compendiumState.elementsToRender.map(
           (cElement: T_CompendiumElement) => {
             // Getting the rest of values from country.
@@ -133,15 +133,15 @@ const VadeMecum = () => {
               c_name: name,
               c_imgSrc: image,
               c_id: id,
-            } as T_ElementPage;
+            } as T_ElementPropPage;
 
             return (
-              <StyledCompendiumElement>
-                <CompendiumElementPage />
-              </StyledCompendiumElement>
+              //<StyledCompendiumElement>
+              <CompendiumElementPage {...props} />
+              //</StyledCompendiumElement>
             );
           },
-        )} */}
+        )}
     </>
   );
 };

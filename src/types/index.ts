@@ -7,7 +7,7 @@ export type T_Category =
   | 'monsters'
   | 'treasure';
 
-export type T_ElementPage = {
+export type T_ElementPropPage = {
   c_name: string;
   c_imgSrc: string;
   c_id: number;

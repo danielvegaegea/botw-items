@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import {
   selectCompendium,
-  setElementsInArray,
+  //setElementsInArray,
   setCategory,
   setElementsToRender,
   setSearch,
@@ -21,7 +21,7 @@ const CompendiumFilter = () => {
 
   const compendiumState = useAppSelector(selectCompendium);
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector(selectCompendium);
+  //const { error } = useAppSelector(selectCompendium);
 
   /* const makeCompendiumArray = () => {
     const compendiumData = compendiumState.compendium

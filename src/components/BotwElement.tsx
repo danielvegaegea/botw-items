@@ -1,12 +1,12 @@
 //import { useAppSelector } from '../app/hooks';
 import { Link } from 'react-router-dom';
 //import { selectCompendium } from '../features/hyruleCompendium/hyruleCompendiumSlice';
-/* import { T_ElementPage } from '../types'; */
+import { T_ElementPropPage } from '../types/';
 
-const CompendiumElementPage = () => {
+const CompendiumElementPage = (props: T_ElementPropPage) => {
   //const compendiumState = useAppSelector(selectCompendium);
 
-  let c_name, c_imgSrc, c_id;
+  let { c_name, c_imgSrc, c_id } = props;
   //const { c_name, c_imgSrc, c_id }: T_ElementPage = compendiumState.ePage;
   let c_class = String(c_id);
 
