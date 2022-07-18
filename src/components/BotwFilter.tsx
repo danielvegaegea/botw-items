@@ -65,58 +65,54 @@ const CompendiumFilter = () => {
     // es decir, 'i'.
     const searchString = new RegExp(search, 'i');
 
-    let filteredCompendium: //| T_CompendiumElement
-    T_BOTWCompendiumArray = compendiumState.compendiumArray;
+    let filteredCompendiumByCategory: T_BOTWCompendiumArray =
+      compendiumState.compendiumArray;
 
     switch (category) {
       case 'All': {
-        filteredCompendium = compendiumState.compendiumArray;
+        filteredCompendiumByCategory = compendiumState.compendiumArray;
         break;
       }
       case 'Food': {
-        filteredCompendium = compendiumState.compendium?.data.creatures
-          .food as T_BOTWCompendiumArray;
+        filteredCompendiumByCategory = compendiumState.compendium?.data
+          .creatures.food as T_BOTWCompendiumArray;
         break;
       }
       case 'Non_Food': {
-        filteredCompendium = compendiumState.compendium?.data.creatures
-          .non_food as T_BOTWCompendiumArray;
+        filteredCompendiumByCategory = compendiumState.compendium?.data
+          .creatures.non_food as T_BOTWCompendiumArray;
         break;
       }
       case 'Equipment': {
-        filteredCompendium = compendiumState.compendium?.data
+        filteredCompendiumByCategory = compendiumState.compendium?.data
           .equipment as T_BOTWCompendiumArray;
         break;
       }
       case 'Materials': {
-        filteredCompendium = compendiumState.compendium?.data
+        filteredCompendiumByCategory = compendiumState.compendium?.data
           .materials as T_BOTWCompendiumArray;
         break;
       }
       case 'Monsters': {
-        filteredCompendium = compendiumState.compendium?.data
+        filteredCompendiumByCategory = compendiumState.compendium?.data
           .monsters as T_BOTWCompendiumArray;
         break;
       }
       case 'Treasure': {
-        filteredCompendium = compendiumState.compendium?.data
+        filteredCompendiumByCategory = compendiumState.compendium?.data
           .treasure as T_BOTWCompendiumArray;
         break;
       }
     }
 
-    /* filteredCompendium = compendiumState.compendiumArray
-      ? (compendiumState.compendiumArray.filter(
+    const filteredCompendium = filteredCompendiumByCategory
+      ? (filteredCompendiumByCategory.filter(
           (cElement: T_CompendiumElement) => {
             // Filtramos propiamente el compendio y los devolvemos.
-            return (
-              (searchString.test(cElement.name) &&
-                cElement.category === category) ||
-              category === 'All'
-            );
+            return searchString.test(cElement.name);
           },
         ) as T_BOTWCompendiumArray)
-      : ([] as T_BOTWCompendiumArray); */
+      : ([] as T_BOTWCompendiumArray);
 
     return filteredCompendium;
   };
