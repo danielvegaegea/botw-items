@@ -5,7 +5,7 @@ import type {
   T_BOTWCompendiumResponseData,
   T_BOTWCompendiumArray,
   T_Category,
-  T_ElementPage,
+  /* T_ElementPage, */
 } from '../../types';
 
 export interface State {
@@ -16,7 +16,7 @@ export interface State {
   errorMsg: string;
   search: string;
   category: string;
-  ePage: T_ElementPage;
+  /* ePage: T_ElementPage; */
 }
 
 const initialState: State = {
@@ -27,11 +27,11 @@ const initialState: State = {
   errorMsg: '',
   search: '',
   category: 'All',
-  ePage: {
+  /* ePage: {
     c_name: '',
     c_imgSrc: '',
     c_id: 0,
-  },
+  }, */
 };
 
 export const compendiumSlice = createSlice({
@@ -70,11 +70,11 @@ export const compendiumSlice = createSlice({
     setSearch: (state: State, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
-    setEpage: (state: State, action: PayloadAction<T_ElementPage>) => {
+    /* setEpage: (state: State, action: PayloadAction<T_ElementPage>) => {
       state.ePage.c_name = action.payload.c_name;
       state.ePage.c_imgSrc = action.payload.c_imgSrc;
       state.ePage.c_id = action.payload.c_id;
-    },
+    }, */
   },
 });
 
@@ -86,7 +86,7 @@ export const {
   setElementsToRender,
   setElementsInArray,
   setSearch,
-  setEpage,
+  /* setEpage, */
 } = compendiumSlice.actions;
 
 export const selectCompendium = (state: RootState) => state.compendium;

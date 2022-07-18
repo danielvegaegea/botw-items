@@ -6,7 +6,8 @@ import { T_ElementPage } from '../types';
 const CompendiumElementPage = () => {
   const compendiumState = useAppSelector(selectCompendium);
 
-  const { c_name, c_imgSrc, c_id }: T_ElementPage = compendiumState.ePage;
+  let c_name, c_imgSrc, c_id;
+  //const { c_name, c_imgSrc, c_id }: T_ElementPage = compendiumState.ePage;
   let c_class = String(c_id);
 
   return (

@@ -7,7 +7,7 @@ import {
   setCompendiumFromData,
   setElementsToRender,
   setError,
-  setEpage,
+  /* setEpage, */
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 import {
   T_BOTWCompendiumResponseData,
@@ -83,7 +83,8 @@ const VadeMecum = () => {
   compendiumState.elementsToRender &&
     console.log(compendiumState.elementsToRender);
   error && console.log(error);
-
+  console.log('Before Return');
+  console.log(compendiumState.elementsToRender);
   return (
     <>
       <CompendiumFilter />
@@ -104,7 +105,9 @@ const VadeMecum = () => {
               c_imgSrc: image,
               c_id: id,
             } as T_ElementPage;
-            dispatch(setEpage(props));
+            console.log('Before Dispatch Prop.');
+
+            //dispatch(setEpage(props));
 
             return (
               <StyledCompendiumElement>
