@@ -38,7 +38,7 @@ type Data = {
   treasure: T_Treasure[];
 };
 
-type T_Food = {
+export type T_Food = {
   category: string;
   common_locations: string[];
   cooking_effect: string;
