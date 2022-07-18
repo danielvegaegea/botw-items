@@ -1,11 +1,11 @@
 export type T_Category =
-  | 'all'
-  | 'food'
-  | 'non_food'
-  | 'equipment'
-  | 'materials'
-  | 'monsters'
-  | 'treasure';
+  | 'All'
+  | 'Food'
+  | 'Non_Food'
+  | 'Equipment'
+  | 'Materials'
+  | 'Monsters'
+  | 'Treasure';
 
 export type T_ElementPropPage = {
   c_name: string;
@@ -23,8 +23,8 @@ export type T_CompendiumElement =
   | T_Food
   | T_NonFood
   | T_Equipment
-  | T_Material
-  | T_Monster
+  | T_Materials
+  | T_Monsters
   | T_Treasure;
 
 type Data = {
@@ -33,8 +33,8 @@ type Data = {
     non_food: T_NonFood[];
   };
   equipment: T_Equipment[];
-  materials: T_Material[];
-  monsters: T_Monster[];
+  materials: T_Materials[];
+  monsters: T_Monsters[];
   treasure: T_Treasure[];
 };
 
@@ -70,7 +70,7 @@ type T_Equipment = {
   name: string;
 };
 
-type T_Material = {
+type T_Materials = {
   category: string;
   common_locations: string[];
   cooking_effect: string;
@@ -81,7 +81,7 @@ type T_Material = {
   name: string;
 };
 
-type T_Monster = {
+type T_Monsters = {
   category: string;
   common_locations: string[];
   description: string;

@@ -55,7 +55,73 @@ const CompendiumFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
  */
+
   const getFilteredCompendium = ({
+    // Obtenemos los valores search y region de sus estados.
+    search = compendiumState.search,
+    category = compendiumState.category,
+  }) => {
+    // Creamos searchString como una Expresión Regular que sea case insensitive,
+    // es decir, 'i'.
+    const searchString = new RegExp(search, 'i');
+
+    let filteredCompendium: //| T_CompendiumElement
+    T_BOTWCompendiumArray = compendiumState.compendiumArray;
+
+    switch (category) {
+      case 'All': {
+        filteredCompendium = compendiumState.compendiumArray;
+        break;
+      }
+      case 'Food': {
+        filteredCompendium = compendiumState.compendium?.data.creatures
+          .food as T_BOTWCompendiumArray;
+        break;
+      }
+      case 'Non_Food': {
+        filteredCompendium = compendiumState.compendium?.data.creatures
+          .non_food as T_BOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment': {
+        filteredCompendium = compendiumState.compendium?.data
+          .equipment as T_BOTWCompendiumArray;
+        break;
+      }
+      case 'Materials': {
+        filteredCompendium = compendiumState.compendium?.data
+          .materials as T_BOTWCompendiumArray;
+        break;
+      }
+      case 'Monsters': {
+        filteredCompendium = compendiumState.compendium?.data
+          .monsters as T_BOTWCompendiumArray;
+        break;
+      }
+      case 'Treasure': {
+        filteredCompendium = compendiumState.compendium?.data
+          .treasure as T_BOTWCompendiumArray;
+        break;
+      }
+    }
+
+    /* filteredCompendium = compendiumState.compendiumArray
+      ? (compendiumState.compendiumArray.filter(
+          (cElement: T_CompendiumElement) => {
+            // Filtramos propiamente el compendio y los devolvemos.
+            return (
+              (searchString.test(cElement.name) &&
+                cElement.category === category) ||
+              category === 'All'
+            );
+          },
+        ) as T_BOTWCompendiumArray)
+      : ([] as T_BOTWCompendiumArray); */
+
+    return filteredCompendium;
+  };
+
+  /* const getFilteredCompendium = ({
     // Obtenemos los valores search y region de sus estados.
     search = compendiumState.search,
     category = compendiumState.category,
@@ -71,13 +137,13 @@ const CompendiumFilter = () => {
             return (
               (searchString.test(cElement.name) &&
                 cElement.category === category) ||
-              category === 'All'
+              category === 'all'
             );
           },
         ) as T_BOTWCompendiumArray)
       : ([] as T_BOTWCompendiumArray);
     return filteredCompendium;
-  };
+  }; */
 
   const handleOnChange = (event: ChangeEvent<HTMLSelectElement>) => {
     // Actualiza el cambio en Región en el estado y luego actualiza el estado de
@@ -128,13 +194,13 @@ const CompendiumFilter = () => {
       <form>
         <label htmlFor="categories">Categories</label>
         <select name="categories" id="categories" onChange={handleOnChange}>
-          <option value="all">All</option>
-          <option value="food">Creatures (food)</option>
-          <option value="non_food">Creatures (non food)</option>
-          <option value="equipment">Equipment</option>
-          <option value="materials">Materials</option>
-          <option value="monsters">Monsters</option>
-          <option value="treasure">Treasure</option>
+          <option value="All">All</option>
+          <option value="Food">Creatures (food)</option>
+          <option value="Non_Food">Creatures (non food)</option>
+          <option value="Equipment">Equipment</option>
+          <option value="Materials">Materials</option>
+          <option value="Monsters">Monsters</option>
+          <option value="Treasure">Treasure</option>
         </select>
         <label>Seach</label>
         {/* <input type="search" placeholder="search" /> */}
