@@ -23,11 +23,11 @@ const CompendiumFilter = () => {
   const dispatch = useAppDispatch();
   const { error } = useAppSelector(selectCompendium);
 
-  const makeCompendiumArray = () => {
+  /* const makeCompendiumArray = () => {
     const compendiumData = compendiumState.compendium
       ? compendiumState.compendium?.data
       : null;
-
+    console.log(compendiumState.compendium);
     const completeArray = compendiumData
       ? ([
           ...compendiumData.creatures.food,
@@ -38,17 +38,17 @@ const CompendiumFilter = () => {
           ...compendiumData.treasure,
         ] as T_BOTWCompendiumArray)
       : null;
-    console.log('OK Array');
-    completeArray && console.log(completeArray);
+    //console.log('OK Array');
+    console.log(completeArray);
     dispatch(setElementsInArray(completeArray));
     //miArray && console.log('miArray');
     //miArray && console.log(miArray);
-  };
+  }; */
 
-  useEffect(() => {
-    makeCompendiumArray();
+  /* useEffect(() => {
+    compendiumState.compendium && makeCompendiumArray();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
+  }, [error]); */
 
   /* useEffect(() => {
     dispatch(setElementsToRender(compendiumState.compendiumArray));

@@ -6,11 +6,12 @@ import {
   selectCompendium,
   setCompendiumFromData,
   setElementsToRender,
+  setElementsInArray,
   setError,
-  /* setEpage, */
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 import {
   T_BOTWCompendiumResponseData,
+  T_BOTWCompendiumArray,
   T_CompendiumElement,
   T_ElementPage,
 } from '../types';
@@ -24,7 +25,6 @@ const getCompendium = async () => {
       'https://botw-compendium.herokuapp.com/api/v2',
     );
     const compendium = (await response.json()) as T_BOTWCompendiumResponseData;
-    console.log('OK Get');
     return compendium;
   } catch (error) {
     console.log(error);
@@ -42,49 +42,78 @@ const VadeMecum = () => {
 
   const dispatch = useAppDispatch();
 
-  const fetchCompendium = async () => {
+  const makeCompendiumToRender = async () => {
     try {
-      const data = await getCompendium();
-      dispatch(setCompendiumFromData(data));
-      console.log('OK Fetch');
-      //console.log(data.data);
-      //console.log(data.data.monsters);
-    } catch (error) {
-      console.log('¡Error! ' + error);
-      dispatch(setError());
-    }
-  };
-
-  const initCompendiumToRender = async () => {
-    try {
-      const data = compendiumState.compendiumArray
+      const data: T_BOTWCompendiumArray = compendiumState.compendiumArray
         ? compendiumState.compendiumArray
         : null;
-      data && dispatch(setElementsToRender(data));
-      data && console.log(data);
+      dispatch(setElementsToRender(data));
     } catch (error) {
       console.log(error);
       dispatch(setError());
     }
   };
 
+  const makeCompendiumArray = async () => {
+    //console.log('makeCompendiumArray');
+    //console.log(compendiumState.compendium);
+    try {
+      const compendiumData = compendiumState.compendium
+        ? compendiumState.compendium.data
+        : null;
+      //console.log(compendiumState.compendium);
+      const completeArray = compendiumData
+        ? ([
+            ...compendiumData.creatures.food,
+            ...compendiumData.creatures.non_food,
+            ...compendiumData.equipment,
+            ...compendiumData.materials,
+            ...compendiumData.monsters,
+            ...compendiumData.treasure,
+          ] as T_BOTWCompendiumArray)
+        : null;
+      //console.log(completeArray);
+      dispatch(setElementsInArray(completeArray));
+      compendiumState.compendiumArray && makeCompendiumToRender();
+    } catch {
+      console.log(error);
+      dispatch(setError());
+    }
+  };
+
+  const fetchCompendium = async () => {
+    try {
+      const data = await getCompendium();
+      dispatch(setCompendiumFromData(data));
+    } catch (error) {
+      console.log('¡Error! ' + error);
+      dispatch(setError());
+    }
+  };
+
   useEffect(() => {
     fetchCompendium();
+    //makeCompendiumToRender();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   useEffect(() => {
+    makeCompendiumArray();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [compendiumState.compendium]);
+
+  /* useEffect(() => {
     initCompendiumToRender();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
+  }, [error]); */
 
-  compendiumState.compendiumArray &&
+  /* compendiumState.compendiumArray &&
     console.log(compendiumState.compendiumArray);
   compendiumState.elementsToRender &&
     console.log(compendiumState.elementsToRender);
   error && console.log(error);
   console.log('Before Return');
-  console.log(compendiumState.elementsToRender);
+  console.log(compendiumState.elementsToRender); */
   return (
     <>
       <CompendiumFilter />
@@ -95,7 +124,7 @@ const VadeMecum = () => {
         </h2>
       ) : null}
 
-      {compendiumState.elementsToRender &&
+      {/* {compendiumState.elementsToRender &&
         compendiumState.elementsToRender.map(
           (cElement: T_CompendiumElement) => {
             // Getting the rest of values from country.
@@ -105,9 +134,6 @@ const VadeMecum = () => {
               c_imgSrc: image,
               c_id: id,
             } as T_ElementPage;
-            console.log('Before Dispatch Prop.');
-
-            //dispatch(setEpage(props));
 
             return (
               <StyledCompendiumElement>
@@ -115,7 +141,7 @@ const VadeMecum = () => {
               </StyledCompendiumElement>
             );
           },
-        )}
+        )} */}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Action } from 'history';
+//import { Action } from 'history';
 import { RootState } from '../../app/store';
 import type {
   T_BOTWCompendiumResponseData,
