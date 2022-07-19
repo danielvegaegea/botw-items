@@ -7,6 +7,31 @@ export type T_Category =
   | 'Monsters'
   | 'Treasure';
 
+export type T_GenericElement = {
+  // Common
+  category: string;
+  common_locations: string[];
+  description: string;
+  id: number;
+  image: string;
+  name: string;
+  // Creatures : Food
+  cooking_effect?: string;
+  hearts_recovered?: number;
+  // Creatures : Non Food
+  drops?: string[];
+  // Equipment
+  attack?: number;
+  defense?: number;
+  // Materials
+  //cooking_effect: string;
+  //hearts_recovered: number;
+  // Monsters
+  //drops: string[];
+  // Treasure
+  //drops: string[];
+} | null;
+
 export type T_ElementPropPage = {
   c_name: string;
   c_imgSrc: string;
