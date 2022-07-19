@@ -1,4 +1,5 @@
-import botwLogo from '../assets/svg/botw-logo.svg';
+//import botwLogo from '../assets/svg/botw-logo.svg';
+import botwLogo from '../assets/svg/botw-icon.svg';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,20 +8,16 @@ const StyledContainer = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem;
+  margin: 0 0 1rem 0;
 `;
 const Styledlogo = styled('img')`
-  width: 10vw;
-  height: 10vw;
+  width: 4vw;
+  height: 4vw;
 `;
 const StyledDiv = styled('div')`
   display: flex;
   align-items: center;
-  background-color: hsla(0, 0%, 0%, 0.5);
-  padding: 0 1rem;
-  border-radius: 5px;
-  margin-left: 1rem;
-  border: 2px solid hsla(0, 0%, 100%, 0.1);
-  outline: 3px solid hsla(0, 0%, 0%, 0.5);
 `;
 const StyledTitle = styled('h2')`
   margin-left: 1rem;
@@ -49,7 +46,7 @@ const StyledLink = styled(Link)`
 
 const BotwHeader = () => {
   return (
-    <StyledContainer>
+    <StyledContainer className="zelda-window">
       <Styledlogo src={botwLogo} className="counter-logo" alt="logo" />
       <StyledDiv>
         <StyledTitle>LOZ:BOTW's Vade Mecum</StyledTitle>

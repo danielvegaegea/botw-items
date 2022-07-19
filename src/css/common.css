@@ -1,0 +1,21 @@
+.zelda-window {
+  background-color: hsla(0, 0%, 0%, 0.5);
+  padding: 0 1rem;
+  border-radius: 5px;
+  margin-left: 1rem;
+  border: 2px solid hsla(0, 0%, 100%, 0.1);
+  outline: 3px solid hsla(0, 0%, 0%, 0.5);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 88%;
+  padding-top: 0.5rem;
+}
+
+a:link {
+  text-decoration: none;
+}

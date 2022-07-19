@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import styled from 'styled-components';
 
 import {
   selectCompendium,
@@ -14,6 +15,20 @@ import {
   T_CompendiumElement,
   T_Category,
 } from '../types';
+
+const StyledSection = styled('section')`
+  padding: 0.5rem;
+  & select,
+  & input {
+    margin-left: 0.5rem;
+    background-color: hsla(0, 0%, 0%, 30%);
+    color: white;
+    border: 1px solid hsla(100, 100%, 100%, 20%);
+  }
+  & select {
+    margin-right: 0.5rem;
+  }
+`;
 
 const CompendiumFilter = () => {
   // Generates an array with all 389 elements from the compendium and stores it in
@@ -185,7 +200,7 @@ const CompendiumFilter = () => {
   };
 
   return (
-    <header>
+    <StyledSection>
       <h1>Compendium</h1>
       <form>
         <label htmlFor="categories">Categories</label>
@@ -207,7 +222,7 @@ const CompendiumFilter = () => {
           id="search"
         />
       </form>
-    </header>
+    </StyledSection>
   );
 };
 

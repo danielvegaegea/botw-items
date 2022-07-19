@@ -10,25 +10,15 @@ const Styledlogo = styled('img')`
   height: 30vw;
 `;
 
+const StyledSection = styled('section')`
+  padding: 0.5rem;
+`;
+
 const markdownText = `
 # Presentación
 Esto es una página de prueba para ver si todo funciona.
 Veamos un texto en **negrita** y otro en _cursiva_.
 
-## Hello, world!
-Esto es un segundo párrafo.
-## Hello, world!
-Esto es un segundo párrafo.
-## Hello, world!
-Esto es un segundo párrafo.
-## Hello, world!
-Esto es un segundo párrafo.
-## Hello, world!
-Esto es un segundo párrafo.
-## Hello, world!
-Esto es un segundo párrafo.
-## Hello, world!
-Esto es un segundo párrafo.
 ## Hello, world!
 Esto es un segundo párrafo.
 
@@ -41,7 +31,9 @@ const Homepage = () => {
         <title>BOTW Vade Mecum: Home</title>
       </Helmet>
       <Styledlogo src={botwLogo} className="counter-logo" alt="logo" />
-      <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
+      <StyledSection className="zelda-window">
+        <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
+      </StyledSection>
     </>
   );
 };

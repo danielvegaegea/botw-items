@@ -1,6 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import styled from 'styled-components';
+
+const StyledContainer = styled('div')`
+  padding: 0.5rem;
+`;
 
 const markdownText = `
 # Presentación
@@ -32,7 +37,9 @@ const About = () => {
       <Helmet>
         <title>BOTW Vade Mecum: About</title>
       </Helmet>
-      <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
+      <StyledContainer className="zelda-window">
+        <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
+      </StyledContainer>
     </>
   );
 };

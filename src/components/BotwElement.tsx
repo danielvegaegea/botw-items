@@ -2,8 +2,30 @@
 import { Link } from 'react-router-dom';
 //import { selectCompendium } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 import { T_ElementPropPage } from '../types/';
+import styled from 'styled-components';
 
-const CompendiumElementPage = (props: T_ElementPropPage) => {
+const StyledSection = styled('section')`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 18rem;
+  margin: 0.3rem 0;
+
+  & h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+  }
+`;
+const StyledPicuture = styled('picture')`
+  height: 50px;
+  width: 50px;
+  margin-right: 1rem;
+  display: flex;
+`;
+
+const CompendiumElementEntry = (props: T_ElementPropPage) => {
   //const compendiumState = useAppSelector(selectCompendium);
 
   let { c_name, c_imgSrc, c_id } = props;
@@ -12,14 +34,14 @@ const CompendiumElementPage = (props: T_ElementPropPage) => {
 
   return (
     <Link to={`/compendium/${c_id}`} className={c_class}>
-      <section>
-        <picture>
+      <StyledSection>
+        <StyledPicuture>
           <img src={c_imgSrc} alt={c_name} />
-        </picture>
+        </StyledPicuture>
         <h2>{c_name}</h2>
-      </section>
+      </StyledSection>
     </Link>
   );
 };
 
-export default CompendiumElementPage;
+export default CompendiumElementEntry;

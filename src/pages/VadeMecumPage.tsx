@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-//import styled from 'styled-components';
+import styled from 'styled-components';
 
 import {
   selectCompendium,
@@ -9,6 +9,7 @@ import {
   setElementsInArray,
   setError,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
+
 import {
   T_BOTWCompendiumResponseData,
   T_BOTWCompendiumArray,
@@ -17,7 +18,7 @@ import {
 } from '../types';
 
 import CompendiumFilter from '../components/BotwFilter';
-import CompendiumElementPage from '../components/BotwElement';
+import CompendiumElementEntry from '../components/BotwElement';
 
 const getCompendium = async () => {
   try {
@@ -32,9 +33,16 @@ const getCompendium = async () => {
   }
 };
 
-/* const StyledCompendiumElement = styled(CompendiumElementPage)`
-  border: 2px solid red;
-`; */
+const StyledFilter = styled('section')`
+  margin: 1rem 0;
+  min-width: 30rem;
+`;
+
+const StyledList = styled('section')`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 45vw;
+`;
 
 const VadeMecum = () => {
   const compendiumState = useAppSelector(selectCompendium);
@@ -116,32 +124,32 @@ const VadeMecum = () => {
   console.log(compendiumState.elementsToRender); */
   return (
     <>
-      <CompendiumFilter />
-      {error ? (
-        <h2>
-          {' '}
-          ERROR <span role="img">💥</span>
-        </h2>
-      ) : null}
+      <StyledFilter className="zelda-window">
+        <CompendiumFilter />
+        {error ? (
+          <h2>
+            {' '}
+            ERROR <span role="img">💥</span>
+          </h2>
+        ) : null}
+      </StyledFilter>
 
-      {compendiumState.elementsToRender &&
-        compendiumState.elementsToRender.map(
-          (cElement: T_CompendiumElement) => {
-            // Getting the rest of values from country.
-            const { name, image, id }: T_CompendiumElement = cElement;
-            const props = {
-              c_name: name,
-              c_imgSrc: image,
-              c_id: id,
-            } as T_ElementPropPage;
+      <StyledList className="zelda-window">
+        {compendiumState.elementsToRender &&
+          compendiumState.elementsToRender.map(
+            (cElement: T_CompendiumElement) => {
+              // Getting the rest of values from country.
+              const { name, image, id }: T_CompendiumElement = cElement;
+              const props = {
+                c_name: name,
+                c_imgSrc: image,
+                c_id: id,
+              } as T_ElementPropPage;
 
-            return (
-              //<StyledCompendiumElement>
-              <CompendiumElementPage {...props} key={id.toString()} />
-              //</StyledCompendiumElement>
-            );
-          },
-        )}
+              return <CompendiumElementEntry {...props} key={id.toString()} />;
+            },
+          )}
+      </StyledList>
     </>
   );
 };

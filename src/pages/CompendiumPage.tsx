@@ -1,8 +1,43 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
 import { T_CompendiumElement, T_GenericElement } from '../types';
 import { capitalizeWords } from '../tools/tools';
+
+const StyledCompendiumPage = styled.div`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  & h3 {
+    color: yellow;
+  }
+  & .title {
+    display: flex;
+    justify-content: center;
+  }
+  & article {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  & picture {
+    display: flex;
+    height: 200px;
+  }
+
+  & .element-info {
+    max-width: 30rem;
+    padding: 0.5rem;
+  }
+`;
+
+const StyledErrorPage = styled.div`
+  max-width: 50%;
+  border: 5px solid red;
+  background-color: pink;
+`;
 
 const fetchCompendiumByIsoCode = async (isoCode: string) => {
   //  Gets the page data using the isoCode of the page.
@@ -78,53 +113,85 @@ const CompendiumPage = () => {
       //    Non Food, Monsters or Treasure
       if (pElement?.drops) {
         eLabel[0] = 'Drops:';
-        for (let i = 1; i < 13; i++) {
-          eLabel[i] =
-            pElement?.drops![i - 1] !== undefined
-              ? capitalizeWords(pElement?.drops[i - 1])
-              : '';
+        if (pElement?.drops!.length === 0) {
+          eLabel[1] = '-';
+        } else {
+          for (let i = 1; i < 13; i++) {
+            eLabel[i] =
+              pElement?.drops![i - 1] !== undefined
+                ? capitalizeWords(pElement?.drops[i - 1])
+                : '';
+          }
         }
       }
     }
   }
-
-  return (
-    element && (
+  const pageId = Number(isoCode!);
+  if (pageId > 0 && pageId < 390) {
+    return (
+      element && (
+        <>
+          <Helmet>
+            <title>BOTW Vade Mecum: {e_name}</title>
+          </Helmet>
+          <StyledCompendiumPage className="zelda-window">
+            <div className="title">
+              <h2>{e_name}</h2>
+            </div>
+            <article>
+              <picture>
+                <img src={e_image} alt={e_name} />
+              </picture>
+              <section className="element-info zelda-window">
+                <div>
+                  <h3>Category:</h3>
+                  <p>{e_category}</p>
+                </div>
+                <div>
+                  <h3>Description:</h3>
+                  <p>{e_description}</p>
+                </div>
+                <div>
+                  <h3>Common Location:</h3>
+                  <p>{e_location[0]}</p>
+                  <p>{e_location[1]}</p>
+                  <p>{e_location[2]}</p>
+                </div>
+                <h3>{eLabel[0]}</h3>
+                <p>{eLabel[1]}</p>
+                {hLabel.length > 0 && <h3>{hLabel}</h3>}
+                <p>{eLabel[2]}</p>
+                <p>{eLabel[3]}</p>
+                <p>{eLabel[4]}</p>
+                <p>{eLabel[5]}</p>
+                <p>{eLabel[6]}</p>
+                <p>{eLabel[7]}</p>
+                <p>{eLabel[8]}</p>
+                <p>{eLabel[9]}</p>
+                <p>{eLabel[10]}</p>
+                <p>{eLabel[11]}</p>
+                <p>{eLabel[12]}</p>
+              </section>
+            </article>
+          </StyledCompendiumPage>
+        </>
+      )
+    );
+  } else {
+    return (
       <>
-        <h2>{e_name}</h2>
-        <picture>
-          <img src={e_image} alt={e_name} />
-        </picture>
-        <div>
-          <h3>Category: {e_category}</h3>
-        </div>
-        <div>
-          <h3>Description:</h3>
-          <p>{e_description}</p>
-        </div>
-        <div>
-          <h3>Common Location:</h3>
-          <p>{e_location[0]}</p>
-          <p>{e_location[1]}</p>
-          <p>{e_location[2]}</p>
-        </div>
-        <h3>{eLabel[0]}</h3>
-        <p>{eLabel[1]}</p>
-        {hLabel.length > 0 && <h3>{hLabel}</h3>}
-        <p>{eLabel[2]}</p>
-        <p>{eLabel[3]}</p>
-        <p>{eLabel[4]}</p>
-        <p>{eLabel[5]}</p>
-        <p>{eLabel[6]}</p>
-        <p>{eLabel[7]}</p>
-        <p>{eLabel[8]}</p>
-        <p>{eLabel[9]}</p>
-        <p>{eLabel[10]}</p>
-        <p>{eLabel[11]}</p>
-        <p>{eLabel[12]}</p>
+        <Helmet>
+          <title>BOTW Vade Mecum: Page not found</title>
+        </Helmet>
+        <StyledErrorPage className="zelda-window">
+          <h1>Error</h1>
+          <p>
+            Maybe you lost your way. You should return to{' '}
+            <Link to="/">home</Link> and try again.
+          </p>
+        </StyledErrorPage>
       </>
-    )
-  );
+    );
+  }
 };
-
 export default CompendiumPage;
