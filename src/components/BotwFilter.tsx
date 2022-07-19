@@ -198,9 +198,14 @@ const CompendiumFilter = () => {
           <option value="Monsters">Monsters</option>
           <option value="Treasure">Treasure</option>
         </select>
-        <label>Seach</label>
+        <label htmlFor="search">Search</label>
         {/* <input type="search" placeholder="search" /> */}
-        <input type="search" placeholder="search" onKeyUp={handleKeyUp} />
+        <input
+          type="search"
+          placeholder="search"
+          onKeyUp={handleKeyUp}
+          id="search"
+        />
       </form>
     </header>
   );

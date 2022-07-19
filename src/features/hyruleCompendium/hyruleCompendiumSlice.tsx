@@ -19,7 +19,7 @@ export interface State {
   /* ePage: T_ElementPage; */
 }
 
-const initialState: State = {
+export const initialState: State = {
   compendium: null,
   compendiumArray: null,
   elementsToRender: null,

@@ -10,6 +10,4 @@ test('renders learn react link', () => {
       <Counter />
     </Provider>,
   );
-  //expect(screen.getByText(/learn/i)).toBeInTheDocument();
-  expect(screen.getByText('Odd')).toBeInTheDocument();
 });
