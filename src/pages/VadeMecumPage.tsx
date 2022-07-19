@@ -137,7 +137,7 @@ const VadeMecum = () => {
 
             return (
               //<StyledCompendiumElement>
-              <CompendiumElementPage {...props} />
+              <CompendiumElementPage {...props} key={id.toString()} />
               //</StyledCompendiumElement>
             );
           },
