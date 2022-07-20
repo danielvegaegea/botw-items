@@ -39,9 +39,13 @@ const StyledFilter = styled('section')`
 `;
 
 const StyledList = styled('section')`
+  margin-left: 0;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  max-width: 45vw;
+  width: 75vw;
+  min-width: 39.5rem;
+  max-width: 56.5rem;
 `;
 
 const VadeMecum = () => {

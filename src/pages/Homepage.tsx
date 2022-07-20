@@ -5,8 +5,15 @@ import { Helmet } from 'react-helmet-async';
 import botwLogo from '../assets/svg/botw-logo.svg';
 import styled from 'styled-components';
 
-const Styledlogo = styled('img')`
-  width: 25vw;
+const Styledlogo = styled('picture')`
+  //border: 3px solid blue;
+  //min-width: 31.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  & img {
+    min-height: 20rem;
+  }
 `;
 
 const StyledSection = styled('blockquote')`
@@ -34,7 +41,13 @@ const Homepage = () => {
       <Helmet>
         <title>BOTW Vade Mecum: Home</title>
       </Helmet>
-      <Styledlogo src={botwLogo} className="counter-logo" alt="logo" />
+      <Styledlogo>
+        <img
+          src={botwLogo}
+          className="counter-logo"
+          alt="Breath of the Wild Logo"
+        />
+      </Styledlogo>
       <StyledSection
         className="zelda-window"
         cite="https://nintendo.fandom.com/wiki/Shigeru_Miyamoto/quotes#:~:text=%22If%20it%20turns%20out%20that,basis%20of%20the%20new%20game.%22"
