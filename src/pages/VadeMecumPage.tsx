@@ -43,9 +43,22 @@ const StyledList = styled('section')`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 75vw;
+  width: 79vw;
   min-width: 39.5rem;
-  max-width: 56.5rem;
+  max-width: 59.3rem;
+  @media screen and (max-width: 1198px) {
+    max-width: 40.4rem;
+  }
+  @media screen and (max-width: 815px) {
+    //background-color: lightblue;
+    & section {
+      width: 27rem;
+      font-size: 150%;
+    }
+
+    min-width: unset;
+    max-width: 28rem;
+  }
 `;
 
 const VadeMecum = () => {

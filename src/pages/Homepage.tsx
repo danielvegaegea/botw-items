@@ -35,6 +35,7 @@ grown up--a world where he will act different and look different."
 `;
 
 const markdownQuoteAuthor = 'Shigeru Miyamoto';
+
 const Homepage = () => {
   return (
     <>

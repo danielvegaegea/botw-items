@@ -8,34 +8,42 @@ const StyledContainer = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0 1rem;
   margin: 0 0 1rem 0;
 `;
 const Styledlogo = styled('img')`
-  width: 4vw;
-  height: 4vw;
+  height: 7rem;
+  margin: 0.5rem;
 `;
 const StyledDiv = styled('div')`
+  //border: 2px solid blue;
   display: flex;
+  padding-top: 0.5rem;
+  flex-direction: column;
   align-items: center;
 `;
 const StyledTitle = styled('h2')`
-  margin-left: 1rem;
-  font-size: 1rem;
   margin: 0;
+  width: 20rem;
+  text-align: center;
+  font-size: 120%;
 `;
 const StyledUl = styled('ul')`
   display: flex;
   list-style-type: none;
-  margin-left: 0.5rem;
+  margin: 0.5rem 0 0 0.5rem;
   padding: 0 0 0 0.5rem;
 `;
 const StyledLi = styled('li')`
   margin-right: 1rem;
+  a:link,
+  a:visited {
+    color: white;
+  }
   &:last-of-type {
     margin-right: 0;
   }
-  &:hover {
+  a:hover {
     color: yellow;
   }
 `;
@@ -49,7 +57,7 @@ const BotwHeader = () => {
     <StyledContainer className="zelda-window">
       <Styledlogo src={botwLogo} className="counter-logo" alt="logo" />
       <StyledDiv>
-        <StyledTitle>LOZ:BOTW's Vade Mecum</StyledTitle>
+        <StyledTitle>LOZ: Breath Of The Wild's Vade Mecum</StyledTitle>
         <nav>
           <StyledUl>
             <StyledLi>

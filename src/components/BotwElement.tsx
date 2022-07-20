@@ -11,12 +11,16 @@ const StyledSection = styled('section')`
   justify-content: flex-start;
   align-items: center;
   width: 18rem;
-  margin: 0.3rem 0;
+  margin: 0.3rem 0.5rem;
 
-  & h2 {
+  & p {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 105%;
     color: white;
+
+    &:hover {
+      color: yellow;
+    }
   }
 `;
 const StyledPicuture = styled('picture')`
@@ -39,7 +43,7 @@ const CompendiumElementEntry = (props: T_ElementPropPage) => {
         <StyledPicuture>
           <img src={c_imgSrc} alt={c_name} />
         </StyledPicuture>
-        <h2>{capitalizeWords(c_name)}</h2>
+        <p>{capitalizeWords(c_name)}</p>
       </StyledSection>
     </Link>
   );

@@ -18,15 +18,20 @@ import {
 
 const StyledSection = styled('section')`
   padding: 0.5rem;
-  & select,
-  & input {
-    margin-left: 0.5rem;
-    background-color: hsla(0, 0%, 0%, 30%);
-    color: white;
-    border: 1px solid hsla(100, 100%, 100%, 20%);
-  }
-  & select {
-    margin-right: 0.5rem;
+  & form {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    & select,
+    & input {
+      margin-left: 0.5rem;
+      background-color: hsla(0, 0%, 0%, 30%);
+      color: white;
+      border: 1px solid hsla(100, 100%, 100%, 20%);
+    }
+    & select {
+      margin-right: 0.5rem;
+    }
   }
 `;
 
@@ -201,7 +206,7 @@ const CompendiumFilter = () => {
 
   return (
     <StyledSection>
-      <h1>Compendium</h1>
+      <h1>Vade Mecum</h1>
       <form>
         <label htmlFor="categories">Categories</label>
         <select name="categories" id="categories" onChange={handleOnChange}>

@@ -21,15 +21,15 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: aqua;
+  background-color: rgb(18, 52, 4);
   background-image: url(../assets/jpg/background.jpg);
   /* position: fixed; */
   top: 0;
-  left: 0;
+  right: 0;
   min-width: 100%;
   min-height: 100vh;
   background-size: cover;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
