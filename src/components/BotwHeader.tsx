@@ -57,7 +57,7 @@ const BotwHeader = () => {
   return (
     <StyledContainer className="zelda-window">
       <Link to="/">
-        <Styledlogo src={botwLogo} alt="logo" />
+        <Styledlogo src={botwLogo} alt="Zelda Logo" />
       </Link>
       <StyledDiv>
         <StyledTitle>LOZ: Breath Of The Wild's Vade Mecum</StyledTitle>

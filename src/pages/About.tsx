@@ -55,8 +55,10 @@ The project was created in [React](https://es.reactjs.org/) with
 [React Redux Toolkit](https://redux-toolkit.js.org/),
 [React Router](https://v5.reactrouter.com/),
 [React Markdown](https://www.npmjs.com/package/react-markdown),
-[React Helmet Asyng](https://www.npmjs.com/package/react-helmet-async)
-and [Styled Components](https://styled-components.com/). As working framework,
+[React Helmet Asyng](https://www.npmjs.com/package/react-helmet-async),
+[React Snap](https://www.npmjs.com/package/react-snap) and
+[Styled Components](https://styled-components.com/).
+As working framework,
 I used [Visual Studio Code](https://code.visualstudio.com/).
 
 `;
