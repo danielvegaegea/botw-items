@@ -227,6 +227,9 @@ const CompendiumFilter = () => {
           onKeyUp={handleKeyUp}
           id="search"
           maxLength={25}
+          onKeyPress={(e) => {
+            e.key === 'Enter' && e.preventDefault();
+          }}
         />
       </form>
     </StyledSection>
