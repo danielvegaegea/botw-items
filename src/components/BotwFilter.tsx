@@ -188,10 +188,11 @@ const CompendiumFilter = () => {
     // filtered para que lo muestre al renderizar en su correspondiente componente.
 
     // Deconstruyendo el objeto de evento para obtener el valor que usario tipeo
-    const {
+    let {
       target: { value },
     } = event;
     // El valor lo agrego al estado global y lo asigno a propiedad search
+    value = value.replace(/[~`!@#$%^&()_={}[\]:;,.<>+\/?]/g, '');
     dispatch(setSearch(value));
 
     // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
@@ -222,9 +223,10 @@ const CompendiumFilter = () => {
         {/* <input type="search" placeholder="search" /> */}
         <input
           type="search"
-          placeholder="search"
+          placeholder="Search (Only letters, numbers and hyphens)"
           onKeyUp={handleKeyUp}
           id="search"
+          maxLength={25}
         />
       </form>
     </StyledSection>
