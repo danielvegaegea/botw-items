@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import { selectCompendium } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 import { T_ElementPropPage } from '../types/';
 import styled from 'styled-components';
+import { capitalizeWords } from '../tools/tools';
 
 const StyledSection = styled('section')`
   display: flex;
@@ -38,7 +39,7 @@ const CompendiumElementEntry = (props: T_ElementPropPage) => {
         <StyledPicuture>
           <img src={c_imgSrc} alt={c_name} />
         </StyledPicuture>
-        <h2>{c_name}</h2>
+        <h2>{capitalizeWords(c_name)}</h2>
       </StyledSection>
     </Link>
   );

@@ -10,6 +10,10 @@ const StyledCompendiumPage = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  min-width: 30rem;
+  max-width: 80vw;
+  margin-left: 0rem;
+
   & h3 {
     color: yellow;
   }
@@ -23,8 +27,10 @@ const StyledCompendiumPage = styled.div`
   }
 
   & picture {
-    display: flex;
-    height: 200px;
+    padding: 0.3rem;
+    width: 15vw;
+    min-width: 150px;
+    margin-right: 1rem;
   }
 
   & .element-info {
@@ -139,9 +145,11 @@ const CompendiumPage = () => {
               <h2>{e_name}</h2>
             </div>
             <article>
-              <picture>
-                <img src={e_image} alt={e_name} />
-              </picture>
+              <div>
+                <picture className="zelda-window">
+                  <img src={e_image} alt={e_name} />
+                </picture>
+              </div>
               <section className="element-info zelda-window">
                 <div>
                   <h3>Category:</h3>

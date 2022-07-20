@@ -6,24 +6,28 @@ import botwLogo from '../assets/svg/botw-logo.svg';
 import styled from 'styled-components';
 
 const Styledlogo = styled('img')`
-  width: 30vw;
-  height: 30vw;
+  width: 25vw;
 `;
 
-const StyledSection = styled('section')`
-  padding: 0.5rem;
+const StyledSection = styled('blockquote')`
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  max-width: 30rem;
+  font-style: italic;
+  & .quote-author {
+    text-align: right;
+  }
 `;
 
-const markdownText = `
-# Presentación
-Esto es una página de prueba para ver si todo funciona.
-Veamos un texto en **negrita** y otro en _cursiva_.
-
-## Hello, world!
-Esto es un segundo párrafo.
+const markdownQuoteText = `
+"I am not **Link**, but I do know him! Even after 18 years, **the
+Legend of Zelda** never stops changing and this game is no
+different. We are now taking you to a world where **Link** has
+grown up--a world where he will act different and look different."
 
 `;
 
+const markdownQuoteAuthor = 'Shigeru Miyamoto';
 const Homepage = () => {
   return (
     <>
@@ -31,8 +35,19 @@ const Homepage = () => {
         <title>BOTW Vade Mecum: Home</title>
       </Helmet>
       <Styledlogo src={botwLogo} className="counter-logo" alt="logo" />
-      <StyledSection className="zelda-window">
-        <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
+      <StyledSection
+        className="zelda-window"
+        cite="https://nintendo.fandom.com/wiki/Shigeru_Miyamoto/quotes#:~:text=%22If%20it%20turns%20out%20that,basis%20of%20the%20new%20game.%22"
+      >
+        <ReactMarkdown
+          children={markdownQuoteText}
+          remarkPlugins={[remarkGfm]}
+        />
+        <ReactMarkdown
+          className="quote-author"
+          children={markdownQuoteAuthor}
+          remarkPlugins={[remarkGfm]}
+        />
       </StyledSection>
     </>
   );
