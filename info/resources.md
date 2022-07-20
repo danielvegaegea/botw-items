@@ -14,7 +14,13 @@
 
 ## Assets
 
-[Breath of the Wild logo and icon](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild)
+Breath of the Wild logo and icon[Logopedia](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild)
+
+Background:
+[Wallpaper Coders](https://wall.alphacoders.com/by_sub_category.php?id=242233&name=The+Legend+of+Zelda%3A+Breath+of+the+Wild+Fondos+de+pantalla&filter=4K+Ultra+HD&lang=Spanish)
+
+Triforce:
+[SVG Repo.com](https://www.svgrepo.com/svg/323529/triforce)
 
 ## Discarded
 

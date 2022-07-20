@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'The Wild Breath of Zelda';
+  src: url('../assets/fonts/TheWildBreathofZelda.otf') format('opentype');
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -27,6 +33,7 @@ a:visited {
 }
 
 h1 {
+  font-family: 'The Wild Breath of Zelda', sans-serif;
   margin: 0 0 0.5rem 0;
   text-align: center;
 }

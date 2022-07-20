@@ -12,7 +12,7 @@ const StyledContainer = styled('div')`
 `;
 
 const markdownText = `
-# About this page:
+# About this page
 
 ## Presentation
 
@@ -32,6 +32,20 @@ The **Vade Mecum** content belongs to
 [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/)
 and it's to their creators the merit belongs. I only used it to render the content
 in a more comfortable way.
+
+## Assets
+
+- Breath of the Wild logo and icon comes from
+[Logopedia](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild).
+
+- The Wild Breath of Zelda font comes from
+[dafont.com](https://www.dafont.com/the-wild-breath-of-zelda.font)
+
+- Background from
+[Wallpaper Coders](https://wall.alphacoders.com/by_sub_category.php?id=242233&name=The+Legend+of+Zelda%3A+Breath+of+the+Wild+Fondos+de+pantalla&filter=4K+Ultra+HD&lang=Spanish).
+
+- The Triforce symbol comes from
+[SVG Repo](https://www.svgrepo.com/svg/323529/triforce).
 
 ## About the project
 

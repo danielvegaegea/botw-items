@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 // Styles
 const StyledContainer = styled('div')`
+  font-family: 'The Wild Breath of Zelda', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +27,7 @@ const StyledTitle = styled('h2')`
   margin: 0;
   width: 20rem;
   text-align: center;
-  font-size: 120%;
+  font-size: 140%;
 `;
 const StyledUl = styled('ul')`
   display: flex;
@@ -55,7 +56,9 @@ const StyledLink = styled(Link)`
 const BotwHeader = () => {
   return (
     <StyledContainer className="zelda-window">
-      <Styledlogo src={botwLogo} className="counter-logo" alt="logo" />
+      <Link to="/">
+        <Styledlogo src={botwLogo} alt="logo" />
+      </Link>
       <StyledDiv>
         <StyledTitle>LOZ: Breath Of The Wild's Vade Mecum</StyledTitle>
         <nav>

@@ -27,6 +27,16 @@ The **Legend of Zelda** franchise, the assets, images and designs are properties
 
 The **Vade Mecum** content belongs to [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/) and it's to their creators the merit belongs. I only used it to render the content in a more comfortable way.
 
+## Assets
+
+- Breath of the Wild logo and icon comes from [Logopedia](https://logos.fandom.com/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild).
+
+- The Wild Breath of Zelda font comes from [dafont.com](https://www.dafont.com/the-wild-breath-of-zelda.font)
+
+- Background from [Wallpaper Coders](https://wall.alphacoders.com/by_sub_category.php?id=242233&name=The+Legend+of+Zelda%3A+Breath+of+the+Wild+Fondos+de+pantalla&filter=4K+Ultra+HD&lang=Spanish).
+
+- The Triforce symbol comes from [SVG Repo](https://www.svgrepo.com/svg/323529/triforce).
+
 ## About the project
 
 The project was created in [React](https://es.reactjs.org/) with [Create React App](https://create-react-app.dev/) in [TypeScript](https://www.typescriptlang.org/es/), using [React Redux Toolkit](https://redux-toolkit.js.org/), [React Router](https://v5.reactrouter.com/), [React Markdown](https://www.npmjs.com/package/react-markdown), [React Helmet Asyng](https://www.npmjs.com/package/react-helmet-async) and [Styled Components](https://styled-components.com/). As working framework, I used [Visual Studio Code](https://code.visualstudio.com/).

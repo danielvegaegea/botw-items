@@ -30,6 +30,7 @@ const StyledCompendiumPage = styled.div`
     padding: 0.3rem;
     width: 15vw;
     min-width: 150px;
+    max-width: 150px;
     margin-right: 1rem;
   }
 

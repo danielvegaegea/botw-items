@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 
 import {
@@ -142,6 +143,9 @@ const VadeMecum = () => {
   return (
     <>
       <StyledFilter className="zelda-window">
+        <Helmet>
+          <title>BOTW Vade Mecum: Vade Mecum</title>
+        </Helmet>
         <CompendiumFilter />
         {error ? (
           <h2>
