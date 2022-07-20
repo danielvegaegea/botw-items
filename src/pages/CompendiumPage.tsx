@@ -40,9 +40,9 @@ const StyledCompendiumPage = styled.div`
 `;
 
 const StyledErrorPage = styled.div`
-  max-width: 50%;
-  border: 5px solid red;
-  background-color: pink;
+  margin: 5rem 0 0 0;
+  max-width: 25rem;
+  padding: 1rem;
 `;
 
 const fetchCompendiumByIsoCode = async (isoCode: string) => {
@@ -192,7 +192,7 @@ const CompendiumPage = () => {
           <title>BOTW Vade Mecum: Page not found</title>
         </Helmet>
         <StyledErrorPage className="zelda-window">
-          <h1>Error</h1>
+          <h1>⚠️ Error!</h1>
           <p>
             Maybe you lost your way. You should return to{' '}
             <Link to="/">home</Link> and try again.

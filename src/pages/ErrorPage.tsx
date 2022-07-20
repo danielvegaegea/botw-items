@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 
 const StyledErrorPage = styled.div`
-  max-width: 50%;
-  border: 5px solid red;
-  background-color: pink;
+  margin: 5rem 0 0 0;
+  max-width: 25rem;
+  padding: 1rem;
 `;
 
 const ErrorPage = () => {
@@ -14,8 +14,8 @@ const ErrorPage = () => {
       <Helmet>
         <title>BOTW Vade Mecum: Page not found</title>
       </Helmet>
-      <StyledErrorPage>
-        <h1>Error</h1>
+      <StyledErrorPage className="zelda-window">
+        <h1>⚠️ Error!</h1>
         <p>
           Maybe you lost your way. You should return to <Link to="/">home</Link>{' '}
           and try again.

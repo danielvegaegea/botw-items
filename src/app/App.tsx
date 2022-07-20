@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import ErrorPage from '../pages/ErrorPage';
 import VadeMecum from '../pages/VadeMecumPage';
 import About from '../pages/About';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import '../css/normalize.css';
 import '../css/common.css';
 
