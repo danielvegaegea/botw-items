@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: rgb(206, 199, 199);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7,
+h8,
+h9 {
+  font-size: 150%;
+  color: rgb(43, 113, 226);
+}
+
+body table {
+  color: rgb(180, 194, 46);
+}
+
+body .pl-c {
+  color: green;
+}
+
+:not(pre):not(.hljs) > code {
+  color: #46c02b;
+  font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 18px;
+  background-color: rgb(4, 31, 9);
+}
+
+html body pre {
+  margin: 0.5rem 0 !important;
+  background-color: rgb(4, 31, 9) !important;
+  border: 1px solid green;
+}

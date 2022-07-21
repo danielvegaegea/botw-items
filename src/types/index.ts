@@ -1,4 +1,4 @@
-export type T_Category =
+export type TypeCategory =
   | 'All'
   | 'Food'
   | 'Non_Food'
@@ -7,7 +7,7 @@ export type T_Category =
   | 'Monsters'
   | 'Treasure';
 
-export type T_GenericElement = {
+export type TypeGenericElement = {
   // Common
   category: string;
   common_locations: string[];
@@ -23,47 +23,47 @@ export type T_GenericElement = {
   // Equipment
   attack?: number;
   defense?: number;
-  // Materials
+  // Materials (Yet typed)
   //cooking_effect: string;
   //hearts_recovered: number;
-  // Monsters
+  // Monsters (Yet typed)
   //drops: string[];
-  // Treasure
+  // Treasure (Yet typed)
   //drops: string[];
 } | null;
 
-export type T_ElementPropPage = {
-  c_name: string;
-  c_imgSrc: string;
-  c_id: number;
+export type TypeElementPropPage = {
+  cName: string;
+  cImgSrc: string;
+  cId: number;
 };
 
-export type T_BOTWCompendiumResponseData = {
+export type TypeBOTWCompendiumResponseData = {
   data: Data;
 };
 
-export type T_BOTWCompendiumArray = [] | null;
+export type TypeBOTWCompendiumArray = [] | null;
 
-export type T_CompendiumElement =
-  | T_Food
-  | T_NonFood
-  | T_Equipment
-  | T_Materials
-  | T_Monsters
-  | T_Treasure;
+export type TypeCompendiumElement =
+  | TypeFood
+  | TypeNonFood
+  | TypeEquipment
+  | TypeMaterials
+  | TypeMonsters
+  | TypeTreasure;
 
 type Data = {
   creatures: {
-    food: T_Food[];
-    non_food: T_NonFood[];
+    food: TypeFood[];
+    non_food: TypeNonFood[];
   };
-  equipment: T_Equipment[];
-  materials: T_Materials[];
-  monsters: T_Monsters[];
-  treasure: T_Treasure[];
+  equipment: TypeEquipment[];
+  materials: TypeMaterials[];
+  monsters: TypeMonsters[];
+  treasure: TypeTreasure[];
 };
 
-export type T_Food = {
+export type TypeFood = {
   category: string;
   common_locations: string[];
   cooking_effect: string;
@@ -74,7 +74,7 @@ export type T_Food = {
   name: string;
 };
 
-type T_NonFood = {
+type TypeNonFood = {
   category: string;
   common_locations: string[];
   description: string;
@@ -84,7 +84,7 @@ type T_NonFood = {
   name: string;
 };
 
-type T_Equipment = {
+type TypeEquipment = {
   attack: number;
   category: string;
   common_locations: string[];
@@ -95,7 +95,7 @@ type T_Equipment = {
   name: string;
 };
 
-type T_Materials = {
+type TypeMaterials = {
   category: string;
   common_locations: string[];
   cooking_effect: string;
@@ -106,7 +106,7 @@ type T_Materials = {
   name: string;
 };
 
-type T_Monsters = {
+type TypeMonsters = {
   category: string;
   common_locations: string[];
   description: string;
@@ -116,7 +116,7 @@ type T_Monsters = {
   name: string;
 };
 
-type T_Treasure = {
+type TypeTreasure = {
   category: string;
   common_locations: string[];
   description: string;
@@ -125,86 +125,3 @@ type T_Treasure = {
   image: string;
   name: string;
 };
-
-/* export type Category =
-  | 'food'
-  | 'non_food'
-  | 'equipment'
-  | 'materials'
-  | 'monsters'
-  | 'treasure';
-
-export type BOTWCompendiumResponseData = {
-  creatures: {
-    food: Food[];
-    non_food: NonFood[];
-  };
-  equipment: Equipment[];
-  materials: Material[];
-  monsters: Monster[];
-  treasure: Treasure[];
-};
-
-type Food = {
-  category: string;
-  common_locations: string[];
-  cooking_effect: string;
-  description: string;
-  hearts_recovered: number;
-  id: number;
-  image: string;
-  name: string;
-};
-
-type NonFood = {
-  category: string;
-  common_locations: string[];
-  description: string;
-  drops: string[];
-  id: number;
-  image: string;
-  name: string;
-};
-
-type Equipment = {
-  attack: number;
-  category: string;
-  common_locations: string[];
-  defense: number;
-  description: string;
-  id: number;
-  image: string;
-  name: string;
-};
-
-type Material = {
-  category: string;
-  common_locations: string[];
-  cooking_effect: string;
-  description: string;
-  hearts_recovered: number;
-  id: number;
-  image: string;
-  name: string;
-};
-
-type Monster = {
-  category: string;
-  common_locations: string[];
-  description: string;
-  drops: string[];
-  id: number;
-  image: string;
-  name: string;
-};
-
-type Treasure = {
-  category: string;
-  common_locations: string[];
-  description: string;
-  drops: string[];
-  id: number;
-  image: string;
-  name: string;
-};
- */

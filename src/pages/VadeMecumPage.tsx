@@ -12,10 +12,10 @@ import {
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 
 import {
-  T_BOTWCompendiumResponseData,
-  T_BOTWCompendiumArray,
-  T_CompendiumElement,
-  T_ElementPropPage,
+  TypeBOTWCompendiumResponseData,
+  TypeBOTWCompendiumArray,
+  TypeCompendiumElement,
+  TypeElementPropPage,
 } from '../types';
 
 import CompendiumFilter from '../components/BotwFilter';
@@ -26,7 +26,8 @@ const getCompendium = async () => {
     const response = await fetch(
       'https://botw-compendium.herokuapp.com/api/v2',
     );
-    const compendium = (await response.json()) as T_BOTWCompendiumResponseData;
+    const compendium =
+      (await response.json()) as TypeBOTWCompendiumResponseData;
     return compendium;
   } catch (error) {
     console.log(error);
@@ -70,7 +71,7 @@ const VadeMecum = () => {
 
   const makeCompendiumToRender = async () => {
     try {
-      const data: T_BOTWCompendiumArray = compendiumState.compendiumArray
+      const data: TypeBOTWCompendiumArray = compendiumState.compendiumArray
         ? compendiumState.compendiumArray
         : null;
       dispatch(setElementsToRender(data));
@@ -81,13 +82,10 @@ const VadeMecum = () => {
   };
 
   const makeCompendiumArray = async () => {
-    //console.log('makeCompendiumArray');
-    //console.log(compendiumState.compendium);
     try {
       const compendiumData = compendiumState.compendium
         ? compendiumState.compendium.data
         : null;
-      //console.log(compendiumState.compendium);
       const completeArray = compendiumData
         ? ([
             ...compendiumData.creatures.food,
@@ -96,9 +94,8 @@ const VadeMecum = () => {
             ...compendiumData.materials,
             ...compendiumData.monsters,
             ...compendiumData.treasure,
-          ] as T_BOTWCompendiumArray)
+          ] as TypeBOTWCompendiumArray)
         : null;
-      //console.log(completeArray);
       dispatch(setElementsInArray(completeArray));
       compendiumState.compendiumArray && makeCompendiumToRender();
     } catch {
@@ -119,7 +116,6 @@ const VadeMecum = () => {
 
   useEffect(() => {
     fetchCompendium();
-    //makeCompendiumToRender();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
@@ -128,18 +124,6 @@ const VadeMecum = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compendiumState.compendium]);
 
-  /* useEffect(() => {
-    initCompendiumToRender();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]); */
-
-  /* compendiumState.compendiumArray &&
-    console.log(compendiumState.compendiumArray);
-  compendiumState.elementsToRender &&
-    console.log(compendiumState.elementsToRender);
-  error && console.log(error);
-  console.log('Before Return');
-  console.log(compendiumState.elementsToRender); */
   return (
     <>
       <StyledFilter className="zelda-window">
@@ -158,14 +142,14 @@ const VadeMecum = () => {
       <StyledList className="zelda-window">
         {compendiumState.elementsToRender &&
           compendiumState.elementsToRender.map(
-            (cElement: T_CompendiumElement) => {
+            (cElement: TypeCompendiumElement) => {
               // Getting the rest of values from country.
-              const { name, image, id }: T_CompendiumElement = cElement;
+              const { name, image, id }: TypeCompendiumElement = cElement;
               const props = {
-                c_name: name,
-                c_imgSrc: image,
-                c_id: id,
-              } as T_ElementPropPage;
+                cName: name,
+                cImgSrc: image,
+                cId: id,
+              } as TypeElementPropPage;
 
               return <CompendiumElementEntry {...props} key={id.toString()} />;
             },

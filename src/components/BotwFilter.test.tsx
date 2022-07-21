@@ -1,10 +1,8 @@
 import '@testing-library/jest-dom/extend-expect';
-
 import CompendiumFilter from './BotwFilter';
 import { render, screen, waitFor } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-
 import compendiumReducer, {
   initialState,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
@@ -27,7 +25,7 @@ describe('Compendium Filter', () => {
       </Provider>,
     );
 
-    const heading = screen.getByText('Compendium');
+    const heading = screen.getByText('Vade Mecum');
     expect(heading).toBeInTheDocument();
   });
 

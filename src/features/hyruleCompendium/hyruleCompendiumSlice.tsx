@@ -1,22 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-//import { Action } from 'history';
 import { RootState } from '../../app/store';
 import type {
-  T_BOTWCompendiumResponseData,
-  T_BOTWCompendiumArray,
-  T_Category,
-  /* T_ElementPage, */
+  TypeBOTWCompendiumResponseData,
+  TypeBOTWCompendiumArray,
+  TypeCategory,
 } from '../../types';
 
 export interface State {
-  compendium: null | T_BOTWCompendiumResponseData;
-  compendiumArray: null | T_BOTWCompendiumArray;
-  elementsToRender: null | T_BOTWCompendiumArray;
+  compendium: null | TypeBOTWCompendiumResponseData;
+  compendiumArray: null | TypeBOTWCompendiumArray;
+  elementsToRender: null | TypeBOTWCompendiumArray;
   error: boolean;
   errorMsg: string;
   search: string;
   category: string;
-  /* ePage: T_ElementPage; */
 }
 
 export const initialState: State = {
@@ -27,11 +24,6 @@ export const initialState: State = {
   errorMsg: '',
   search: '',
   category: 'All',
-  /* ePage: {
-    c_name: '',
-    c_imgSrc: '',
-    c_id: 0,
-  }, */
 };
 
 export const compendiumSlice = createSlice({
@@ -41,10 +33,9 @@ export const compendiumSlice = createSlice({
   reducers: {
     setCompendiumFromData: (
       state: State,
-      action: PayloadAction<T_BOTWCompendiumResponseData>,
+      action: PayloadAction<TypeBOTWCompendiumResponseData>,
     ) => {
       state.compendium = action.payload;
-      //state.elementsToRender = action.payload;
     },
     setError: (state: State) => {
       state.error = true;
@@ -52,29 +43,24 @@ export const compendiumSlice = createSlice({
     setErrorMsg: (state: State, action: PayloadAction<string>) => {
       state.errorMsg = action.payload;
     },
-    setCategory: (state: State, action: PayloadAction<T_Category>) => {
+    setCategory: (state: State, action: PayloadAction<TypeCategory>) => {
       state.category = action.payload;
     },
     setElementsToRender: (
       state: State,
-      action: PayloadAction<T_BOTWCompendiumArray>,
+      action: PayloadAction<TypeBOTWCompendiumArray>,
     ) => {
       state.elementsToRender = action.payload;
     },
     setElementsInArray: (
       state: State,
-      action: PayloadAction<T_BOTWCompendiumArray>,
+      action: PayloadAction<TypeBOTWCompendiumArray>,
     ) => {
       state.compendiumArray = action.payload;
     },
     setSearch: (state: State, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
-    /* setEpage: (state: State, action: PayloadAction<T_ElementPage>) => {
-      state.ePage.c_name = action.payload.c_name;
-      state.ePage.c_imgSrc = action.payload.c_imgSrc;
-      state.ePage.c_id = action.payload.c_id;
-    }, */
   },
 });
 
@@ -86,7 +72,6 @@ export const {
   setElementsToRender,
   setElementsInArray,
   setSearch,
-  /* setEpage, */
 } = compendiumSlice.actions;
 
 export const selectCompendium = (state: RootState) => state.compendium;

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import { T_CompendiumElement, T_GenericElement } from '../types';
+import { TypeCompendiumElement, TypeGenericElement } from '../types';
 import { capitalizeWords } from '../tools/tools';
 
 const StyledCompendiumPage = styled.div`
@@ -61,11 +61,11 @@ const fetchCompendiumByIsoCode = async (isoCode: string) => {
 
 const CompendiumPage = () => {
   //  The page itself.
-  const [element, setElement] = useState<T_CompendiumElement | null>(null);
+  const [element, setElement] = useState<TypeCompendiumElement | null>(null);
   const { isoCode } = useParams();
 
   const getElement = async () => {
-    const elementData: T_CompendiumElement = await fetchCompendiumByIsoCode(
+    const elementData: TypeCompendiumElement = await fetchCompendiumByIsoCode(
       isoCode!,
     );
     setElement(elementData);
@@ -80,7 +80,7 @@ const CompendiumPage = () => {
 
   // Processing the data and creating variables and constants.
   //    Preparing pElement
-  let pElement: T_GenericElement;
+  let pElement: TypeGenericElement;
   pElement = element ? element : null;
   //    Common elements
   const e_name = capitalizeWords(pElement ? pElement.name : '-');

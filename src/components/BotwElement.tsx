@@ -1,7 +1,5 @@
-//import { useAppSelector } from '../app/hooks';
 import { Link } from 'react-router-dom';
-//import { selectCompendium } from '../features/hyruleCompendium/hyruleCompendiumSlice';
-import { T_ElementPropPage } from '../types/';
+import { TypeElementPropPage } from '../types/';
 import styled from 'styled-components';
 import { capitalizeWords } from '../tools/tools';
 
@@ -23,6 +21,7 @@ const StyledSection = styled('section')`
     }
   }
 `;
+
 const StyledPicuture = styled('picture')`
   height: 50px;
   width: 50px;
@@ -30,20 +29,17 @@ const StyledPicuture = styled('picture')`
   display: flex;
 `;
 
-const CompendiumElementEntry = (props: T_ElementPropPage) => {
-  //const compendiumState = useAppSelector(selectCompendium);
-
-  let { c_name, c_imgSrc, c_id } = props;
-  //const { c_name, c_imgSrc, c_id }: T_ElementPage = compendiumState.ePage;
-  let c_class = String(c_id);
+const CompendiumElementEntry = (props: TypeElementPropPage) => {
+  let { cName, cImgSrc, cId } = props;
+  let c_class = String(cId);
 
   return (
-    <Link to={`/compendium/${c_id}`} className={c_class}>
+    <Link to={`/compendium/${cId}`} className={c_class}>
       <StyledSection>
         <StyledPicuture>
-          <img src={c_imgSrc} alt={c_name} />
+          <img src={cImgSrc} alt={cName} />
         </StyledPicuture>
-        <p>{capitalizeWords(c_name)}</p>
+        <p>{capitalizeWords(cName)}</p>
       </StyledSection>
     </Link>
   );

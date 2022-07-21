@@ -17,14 +17,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
-
-/* JS code discarded.
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-
-export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
- */

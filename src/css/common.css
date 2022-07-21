@@ -23,6 +23,26 @@ img {
   height: auto;
 }
 
+p {
+  margin: 0;
+}
+
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(18, 52, 4);
+  background-image: url(../assets/jpg/background.jpg);
+  /* position: fixed; */
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 a:link {
   color: rgb(180, 206, 240);
   text-decoration: none;
