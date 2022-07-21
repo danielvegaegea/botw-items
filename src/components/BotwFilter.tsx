@@ -192,7 +192,7 @@ const CompendiumFilter = () => {
       target: { value },
     } = event;
     // El valor lo agrego al estado global y lo asigno a propiedad search
-    value = value.replace(/[~`!@#$%^&()_={}[\]:;,.<>+\/?]/g, '');
+    value = value.replace(/[~`!@#$%^&()_={}[\]:;,.<>+/?]/g, '');
     dispatch(setSearch(value));
 
     // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
