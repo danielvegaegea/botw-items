@@ -1,12 +1,11 @@
 .row {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }
 
 .row > button {
-  margin-left: 4px;
-  margin-right: 8px;
+  margin: 5px 8px 10px 4px;
 }
 .row:not(:last-child) {
   margin-bottom: 16px;
@@ -28,7 +27,7 @@
   padding-right: 12px;
   outline: none;
   border: 2px solid transparent;
-  color: rgb(112, 76, 182);
+  color: rgb(138, 114, 186);
   padding-bottom: 4px;
   cursor: pointer;
   background-color: rgba(112, 76, 182, 0.1);
@@ -41,6 +40,7 @@
   padding: 2px;
   width: 64px;
   text-align: center;
+  margin-bottom: 5px;
   margin-right: 4px;
 }
 
@@ -69,6 +69,10 @@
   top: 0;
   opacity: 0;
   transition: width 1s linear, opacity 0.5s ease 1s;
+  @media screen and (orientation: portrait) {
+    width: 50%;
+    height: 50%;
+  }
 }
 
 .asyncButton:active:after {

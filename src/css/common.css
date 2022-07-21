@@ -1,3 +1,9 @@
+@media screen and (orientation: portrait) {
+  div .background {
+    background-attachment: initial;
+  }
+}
+
 @font-face {
   font-family: 'The Wild Breath of Zelda';
   src: url('../assets/fonts/TheWildBreathofZelda.otf') format('opentype');
@@ -33,9 +39,6 @@ p {
   align-items: center;
   background-color: rgb(18, 52, 4);
   background-image: url(../assets/jpg/background.jpg);
-  /* position: fixed; */
-  top: 0;
-  right: 0;
   min-width: 100%;
   min-height: 100vh;
   background-size: cover;

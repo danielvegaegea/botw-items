@@ -20,6 +20,10 @@ const StyledSection = styled('section')`
       color: yellow;
     }
   }
+
+  @media screen and (orientation: portrait) {
+    max-width: 75vw;
+  }
 `;
 
 const StyledPicuture = styled('picture')`
@@ -27,6 +31,10 @@ const StyledPicuture = styled('picture')`
   width: 50px;
   margin-right: 1rem;
   display: flex;
+  @media screen and (orientation: portrait) {
+    height: 30px;
+    width: 30px;
+  }
 `;
 
 const CompendiumElementEntry = (props: TypeElementPropPage) => {

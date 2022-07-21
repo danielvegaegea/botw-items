@@ -11,6 +11,11 @@ const Styledlogo = styled('picture')`
   & img {
     min-height: 20rem;
   }
+  @media screen and (orientation: portrait) {
+    & img {
+      min-height: 15rem;
+    }
+  }
 `;
 
 const StyledSection = styled('blockquote')`

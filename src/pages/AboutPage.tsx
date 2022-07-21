@@ -9,6 +9,10 @@ const StyledContainer = styled('div')`
   min-width: 33rem;
   font-size: 100%;
   padding: 1rem;
+  @media screen and (orientation: portrait) {
+    min-width: 20rem;
+    width: 50vw;
+  }
 `;
 
 const markdownText = `
@@ -55,7 +59,7 @@ The project was created in [React](https://es.reactjs.org/) with
 [React Redux Toolkit](https://redux-toolkit.js.org/),
 [React Router](https://v5.reactrouter.com/),
 [React Markdown](https://www.npmjs.com/package/react-markdown),
-[React Helmet Asyng](https://www.npmjs.com/package/react-helmet-async),
+[React Helmet Async](https://www.npmjs.com/package/react-helmet-async),
 [React Snap](https://www.npmjs.com/package/react-snap) and
 [Styled Components](https://styled-components.com/).
 As working framework,

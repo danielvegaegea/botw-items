@@ -12,8 +12,7 @@ const BotwFooter = () => {
     display: flex;
     align-items: center;
     font-family: 'The Wild Breath of Zelda', sans-serif;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin: 1rem 0 0.5rem 0;
     padding: 0.3rem 0.5rem;
   `;
   return (

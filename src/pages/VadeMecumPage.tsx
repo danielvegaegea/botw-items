@@ -38,6 +38,9 @@ const getCompendium = async () => {
 const StyledFilter = styled('section')`
   margin: 1rem 0;
   min-width: 30rem;
+  @media screen and (orientation: portrait) {
+    min-width: 10rem;
+  }
 `;
 
 const StyledList = styled('section')`
@@ -60,6 +63,13 @@ const StyledList = styled('section')`
 
     min-width: unset;
     max-width: 28rem;
+  }
+  @media screen and (orientation: portrait) {
+    width: unset;
+    min-width: unset;
+    max-width: 88vw;
+    font-size: 100%;
+    display: unset;
   }
 `;
 

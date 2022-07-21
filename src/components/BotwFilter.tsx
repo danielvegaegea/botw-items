@@ -32,6 +32,13 @@ const StyledSection = styled('section')`
       margin-right: 0.5rem;
     }
   }
+  @media screen and (orientation: portrait) {
+    width: 80vw;
+    & select,
+    & input {
+      max-width: 75vw;
+    }
+  }
 `;
 
 const CompendiumFilter = () => {

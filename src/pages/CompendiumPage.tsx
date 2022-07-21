@@ -38,6 +38,36 @@ const StyledCompendiumPage = styled.div`
     max-width: 30rem;
     padding: 0.5rem;
   }
+
+  @media screen and (orientation: portrait) {
+    /* font-size: 120%; */
+    padding: 1rem;
+    min-width: 20rem;
+    max-width: 80vw;
+    align-items: center;
+
+    & article {
+      flex-direction: column;
+      justify-content: unset;
+    }
+
+    & picture {
+      padding: 0.3rem;
+      width: 30vw;
+      min-width: 200px;
+      max-width: 200px;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+    .picture-container {
+      display: flex;
+      justify-content: center;
+    }
+    /* & .element-info {
+      max-width: 30rem;
+      padding: 0.5rem;
+    } */
+  }
 `;
 
 const StyledErrorPage = styled.div`
@@ -149,7 +179,7 @@ const CompendiumPage = () => {
               <h2>{eName}</h2>
             </div>
             <article>
-              <div>
+              <div className="picture-container">
                 <picture className="zelda-window">
                   <img src={eImage} alt={eName} />
                 </picture>

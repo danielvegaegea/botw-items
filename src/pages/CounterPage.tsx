@@ -10,6 +10,9 @@ function CounterPage() {
   const Styledlogo = styled('img')`
     height: 20rem;
     margin: 0.5rem;
+    @media screen and (orientation: portrait) {
+      height: 15rem;
+    }
   `;
 
   const StyledContainer = styled('div')`
@@ -19,9 +22,13 @@ function CounterPage() {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin: 1rem 0 2rem 0;
     padding: 1rem;
+    @media screen and (orientation: portrait) {
+      min-width: unset;
+      background-attachment: initial;
+      max-width: 88vw;
+    }
   `;
   return (
     // Classnames are maintained from the Redux original page.

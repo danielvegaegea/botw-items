@@ -6,7 +6,7 @@
 - [Create React App](https://create-react-app.dev/)
 - [React Redux Toolkit](https://redux-toolkit.js.org/)
 - [React Router](https://v5.reactrouter.com/)
-- [React Helmet Asyng](https://www.npmjs.com/package/react-helmet-async)
+- [React Helmet Async](https://www.npmjs.com/package/react-helmet-async)
 - [Styled Components](https://styled-components.com/)
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 - [TypeScript](https://www.typescriptlang.org/es/)
