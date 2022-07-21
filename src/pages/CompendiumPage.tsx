@@ -83,12 +83,12 @@ const CompendiumPage = () => {
   let pElement: TypeGenericElement;
   pElement = element ? element : null;
   //    Common elements
-  const e_name = capitalizeWords(pElement ? pElement.name : '-');
-  const e_image = pElement ? pElement.image : '';
-  const e_category = capitalizeWords(pElement ? pElement.category : '-');
-  const e_description = pElement ? pElement.description : '-';
-  let e_location = [];
-  e_location[1] = '(None)';
+  const eName = capitalizeWords(pElement ? pElement.name : '-');
+  const eImage = pElement ? pElement.image : '';
+  const eCategory = capitalizeWords(pElement ? pElement.category : '-');
+  const eDescription = pElement ? pElement.description : '-';
+  let eLocation = [];
+  eLocation[1] = '(None)';
   //    Label for the Drops prop.
   let hLabel = '';
   let eLabel = [];
@@ -97,7 +97,7 @@ const CompendiumPage = () => {
   //  Common Locations section
   if (pElement?.common_locations) {
     for (let i = 0; i < 4; i++) {
-      e_location[i] = pElement?.common_locations
+      eLocation[i] = pElement?.common_locations
         ? capitalizeWords(pElement!.common_locations[i])
         : '-';
     }
@@ -133,38 +133,41 @@ const CompendiumPage = () => {
       }
     }
   }
+
   const pageId = Number(isoCode!);
+  let content;
+
   if (pageId > 0 && pageId < 390) {
-    return (
-      element && (
+    if (element) {
+      content = (
         <>
           <Helmet>
-            <title>BOTW Vade Mecum: {e_name}</title>
+            <title>BOTW Vade Mecum: {eName}</title>
           </Helmet>
           <StyledCompendiumPage className="zelda-window">
             <div className="title">
-              <h2>{e_name}</h2>
+              <h2>{eName}</h2>
             </div>
             <article>
               <div>
                 <picture className="zelda-window">
-                  <img src={e_image} alt={e_name} />
+                  <img src={eImage} alt={eName} />
                 </picture>
               </div>
               <section className="element-info zelda-window">
                 <div>
                   <h3>Category:</h3>
-                  <p>{e_category}</p>
+                  <p>{eCategory}</p>
                 </div>
                 <div>
                   <h3>Description:</h3>
-                  <p>{e_description}</p>
+                  <p>{eDescription}</p>
                 </div>
                 <div>
                   <h3>Common Location:</h3>
-                  <p>{e_location[0]}</p>
-                  <p>{e_location[1]}</p>
-                  <p>{e_location[2]}</p>
+                  <p>{eLocation[0]}</p>
+                  <p>{eLocation[1]}</p>
+                  <p>{eLocation[2]}</p>
                 </div>
                 <h3>{eLabel[0]}</h3>
                 <p>{eLabel[1]}</p>
@@ -184,8 +187,18 @@ const CompendiumPage = () => {
             </article>
           </StyledCompendiumPage>
         </>
-      )
-    );
+      );
+    } else {
+      content = (
+        <>
+          <Helmet>
+            <title>BOTW Vade Mecum: {eName}</title>
+          </Helmet>
+          <h2 className="zelda-window">Loading...</h2>
+        </>
+      );
+    }
+    return content;
   } else {
     return (
       <>
