@@ -64,19 +64,19 @@ const CompendiumPage = () => {
   const [element, setElement] = useState<TypeCompendiumElement | null>(null);
   const { isoCode } = useParams();
 
-  const getElement = async () => {
+  const getElement = async (id: string) => {
     const elementData: TypeCompendiumElement = await fetchCompendiumByIsoCode(
-      isoCode!,
+      id,
     );
     setElement(elementData);
   };
 
   useEffect(() => {
-    return () => {
-      getElement();
-    };
+    if (isoCode) {
+      getElement(isoCode);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isoCode]);
 
   // Processing the data and creating variables and constants.
   //    Preparing pElement
