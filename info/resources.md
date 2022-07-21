@@ -11,6 +11,7 @@
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 - [TypeScript](https://www.typescriptlang.org/es/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+- [netlify](https://www.netlify.com/)
 
 ## Assets
 

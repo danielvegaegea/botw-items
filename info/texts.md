@@ -40,3 +40,7 @@ The **Vade Mecum** content belongs to [Hyrule Compendium API](https://gadhagod.g
 ## About the project
 
 The project was created in [React](https://es.reactjs.org/) with [Create React App](https://create-react-app.dev/) in [TypeScript](https://www.typescriptlang.org/es/), using [React Redux Toolkit](https://redux-toolkit.js.org/), [React Router](https://v5.reactrouter.com/), [React Markdown](https://www.npmjs.com/package/react-markdown), [React Helmet Asyng](https://www.npmjs.com/package/react-helmet-async), [React Snap](https://www.npmjs.com/package/react-snap) and [Styled Components](https://styled-components.com/). As working framework, I used [Visual Studio Code](https://code.visualstudio.com/).
+
+## Source and deploy
+
+The source code can be found in [GitHub](https://github.com) and can be found [here](https://github.com/danielvegaegea/botw-items). The web is deployed in [netlify](https://www.netlify.com/) and can be visited [here](https://tloz-botw-compendium.netlify.app/).

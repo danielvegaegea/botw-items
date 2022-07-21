@@ -61,6 +61,14 @@ The project was created in [React](https://es.reactjs.org/) with
 As working framework,
 I used [Visual Studio Code](https://code.visualstudio.com/).
 
+## Source and deploy
+
+The source code can be consulted in [GitHub](https://github.com)
+and can be found
+[here](https://github.com/danielvegaegea/botw-items).
+The web is deployed in [netlify](https://www.netlify.com/)
+and can be visited [here](https://tloz-botw-compendium.netlify.app/).
+
 `;
 
 const About = () => {
