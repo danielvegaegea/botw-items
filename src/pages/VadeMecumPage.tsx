@@ -51,23 +51,26 @@ const StyledList = styled('section')`
   width: 79vw;
   min-width: 39.5rem;
   max-width: 59.3rem;
-  @media screen and (max-width: 1198px) {
+  @media screen and (max-width: 1199px) {
     max-width: 40.4rem;
   }
   @media screen and (max-width: 815px) {
-    //background-color: lightblue;
+    min-width: unset;
+    width: 40.4rem;
+  }
+  @media screen and (max-width: 665px) {
+    min-width: unset;
+    width: 32.5rem;
+
     & section {
       width: 27rem;
       font-size: 150%;
     }
-
-    min-width: unset;
-    max-width: 28rem;
   }
-  @media screen and (orientation: portrait) {
+  @media screen and (orientation: portrait) and (max-width: 540px) {
     width: unset;
     min-width: unset;
-    max-width: 88vw;
+    max-width: 94vw;
     font-size: 100%;
     display: unset;
   }

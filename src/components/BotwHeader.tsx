@@ -16,9 +16,6 @@ const Styledlogo = styled('img')`
   height: 7rem;
   margin: 0.5rem;
   /* Portrait */
-  @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-    max-height: 3rem;
-  }
 `;
 const StyledDiv = styled('div')`
   //border: 2px solid blue;
@@ -32,7 +29,7 @@ const StyledTitle = styled('h2')`
   width: 20rem;
   text-align: center;
   font-size: 140%;
-  @media screen and (orientation: portrait) {
+  @media screen and (orientation: portrait) and (max-width: 440px) {
     font-size: 120%;
     width: 13rem;
   }
@@ -43,7 +40,7 @@ const StyledUl = styled('ul')`
   margin: 0.5rem 0 0 0.5rem;
   padding: 0 0 0 0.5rem;
   /* Portrait */
-  @media screen and (orientation: portrait) {
+  @media screen and (orientation: portrait) and (max-width: 440px) {
     flex-direction: column;
   }
 `;

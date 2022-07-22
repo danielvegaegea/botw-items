@@ -21,8 +21,11 @@ const StyledSection = styled('section')`
     }
   }
 
-  @media screen and (orientation: portrait) {
-    max-width: 75vw;
+  @media screen and (orientation: portrait) and (max-width: 400px) {
+    max-width: 85vw;
+    p {
+      font-size: 100%;
+    }
   }
 `;
 
@@ -31,10 +34,6 @@ const StyledPicuture = styled('picture')`
   width: 50px;
   margin-right: 1rem;
   display: flex;
-  @media screen and (orientation: portrait) {
-    height: 30px;
-    width: 30px;
-  }
 `;
 
 const CompendiumElementEntry = (props: TypeElementPropPage) => {

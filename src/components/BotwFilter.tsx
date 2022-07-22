@@ -33,7 +33,9 @@ const StyledSection = styled('section')`
     }
   }
   @media screen and (orientation: portrait) {
-    width: 80vw;
+    & form {
+      width: 80vw;
+    }
     & select,
     & input {
       max-width: 75vw;

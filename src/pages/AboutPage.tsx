@@ -9,7 +9,7 @@ const StyledContainer = styled('div')`
   min-width: 33rem;
   font-size: 100%;
   padding: 1rem;
-  @media screen and (orientation: portrait) {
+  @media screen and (orientation: portrait) and (max-width: 545px) {
     min-width: 20rem;
     width: 50vw;
   }
@@ -28,7 +28,7 @@ formation. May this page be a good companion and help you in your adventures wit
 ## Disclaimer
 
 The **Legend of Zelda** franchise, the assets, images and designs are properties by 
-heir legitimate owners. This page is for _non profit objectives_.
+their legitimate owners. This page is for _non profit objectives_.
 
 ## Vade Mecum
 
