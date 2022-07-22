@@ -95,35 +95,36 @@ const VadeMecum = () => {
   //
   // Sub-Functions
   //
-  const makeCompendiumToRender = async () => {
+  const makeCompendiumToRender = async (arrayData: TypeBOTWCompendiumArray) => {
     try {
-      const data: TypeBOTWCompendiumArray = compendiumState.compendiumArray
-        ? compendiumState.compendiumArray
-        : null;
-      dispatch(setElementsToRender(data));
+      //const data: TypeBOTWCompendiumArray = compendiumState.compendiumArray;
+      const data = arrayData ? arrayData : null;
+      data && dispatch(setElementsToRender(data));
     } catch (error) {
-      console.log(error);
       dispatch(setError());
     }
   };
 
-  const makeCompendiumArray = async () => {
+  const makeCompendiumArray = async (
+    fetchData: TypeBOTWCompendiumResponseData,
+  ) => {
     try {
-      const compendiumData = compendiumState.compendium
+      /* const compendiumData = compendiumState.compendium
         ? compendiumState.compendium.data
-        : null;
-      const completeArray = compendiumData
+        : null; */
+      //const completeArray = compendiumData;
+      const completeArray = fetchData
         ? ([
-            ...compendiumData.creatures.food,
-            ...compendiumData.creatures.non_food,
-            ...compendiumData.equipment,
-            ...compendiumData.materials,
-            ...compendiumData.monsters,
-            ...compendiumData.treasure,
+            ...fetchData.data.creatures.food,
+            ...fetchData.data.creatures.non_food,
+            ...fetchData.data.equipment,
+            ...fetchData.data.materials,
+            ...fetchData.data.monsters,
+            ...fetchData.data.treasure,
           ] as TypeBOTWCompendiumArray)
         : null;
       dispatch(setElementsInArray(completeArray));
-      compendiumState.compendiumArray && makeCompendiumToRender();
+      return completeArray;
     } catch {
       console.log(error);
       dispatch(setError());
@@ -134,9 +135,21 @@ const VadeMecum = () => {
     try {
       const data = await getCompendium();
       dispatch(setCompendiumFromData(data));
+      return data;
     } catch (error) {
       console.log('¡Error! ' + error);
       dispatch(setError());
+    }
+  };
+
+  const preparaData = async () => {
+    let fetchData = await fetchCompendium();
+    let arrayData;
+    if (fetchData) {
+      arrayData = await makeCompendiumArray(fetchData);
+    }
+    if (arrayData) {
+      await makeCompendiumToRender(arrayData as TypeBOTWCompendiumArray);
     }
   };
 
@@ -144,14 +157,15 @@ const VadeMecum = () => {
   // Main
   //
   useEffect(() => {
-    fetchCompendium();
+    preparaData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
+  }, []);
 
-  useEffect(() => {
-    makeCompendiumArray();
+  /* useEffect(() => {
+    
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [compendiumState.compendium]);
+  }, [compendiumState.compendium]); */
 
   //
   // Creating Return Data
