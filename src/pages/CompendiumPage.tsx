@@ -7,7 +7,6 @@ import { TypeCompendiumElement, TypeGenericElement } from '../types';
 import { capitalizeWords } from '../tools/tools';
 
 const StyledCompendiumPage = styled.div`
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   min-width: 30rem;
@@ -41,7 +40,6 @@ const StyledCompendiumPage = styled.div`
 
   @media screen and (orientation: portrait) {
     /* font-size: 120%; */
-    padding: 1rem;
     min-width: 20rem;
     max-width: 80vw;
     align-items: center;
@@ -73,7 +71,6 @@ const StyledCompendiumPage = styled.div`
 const StyledErrorPage = styled.div`
   margin: 5rem 0 0 0;
   max-width: 25rem;
-  padding: 1rem;
 `;
 
 const fetchCompendiumByIsoCode = async (isoCode: string) => {
@@ -224,7 +221,7 @@ const CompendiumPage = () => {
           <Helmet>
             <title>BOTW Vade Mecum: {eName}</title>
           </Helmet>
-          <h2 className="zelda-window">Loading...</h2>
+          <h2 className="zelda-window">Hey, Listen!: Loading...</h2>
         </>
       );
     }

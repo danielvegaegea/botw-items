@@ -12,9 +12,10 @@ const BotwFooter = () => {
     display: flex;
     align-items: center;
     font-family: 'The Wild Breath of Zelda', sans-serif;
-    margin: 1rem 0 0.5rem 0;
+    margin: 1rem 0 1rem 0;
     padding: 0.3rem 0.5rem;
   `;
+
   return (
     <>
       <StyledContainer className="zelda-window">
