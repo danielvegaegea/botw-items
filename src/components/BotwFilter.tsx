@@ -262,14 +262,21 @@ const CompendiumFilter = () => {
   };
 
   const setReset = () => {
-    if (compendiumState.search !== '' || compendiumState.category !== 'All') {
-      window.location.reload();
-    }
+    /* if (compendiumState.search !== '' || compendiumState.category !== 'All') {
+      //window.location.reload();
+      
+    } */
+    //console.log('bñah');
+    //categoryPreviousValue = 'All';
+    //searchPreviousValue = '';
+    dispatch(setCategory('All'));
+    dispatch(setSearch(''));
+    dispatch(setElementsToRender(compendiumState.compendiumArray));
   };
 
   let searchPreviousValue, categoryPreviousValue;
-  searchPreviousValue = compendiumState.search;
-  categoryPreviousValue = compendiumState.category;
+  //searchPreviousValue = compendiumState.search;
+  //categoryPreviousValue = compendiumState.category;
   useEffect(() => {
     if (compendiumState.search !== '' || compendiumState.category !== 'All') {
       handleOnPreviousChange();
@@ -304,7 +311,9 @@ const CompendiumFilter = () => {
         <select
           name="categories"
           id="categories"
-          defaultValue={categoryPreviousValue}
+          //defaultValue={compendiumState.category}
+          //defaultValue={categoryPreviousValue}
+          value={compendiumState.category}
           onChange={handleOnChange}
         >
           <option value="All">All</option>
@@ -327,10 +336,13 @@ const CompendiumFilter = () => {
         </select>
         <label htmlFor="search">Search</label>
         <input
-          defaultValue={searchPreviousValue}
+          //defaultValue={searchPreviousValue}
+          //defaultValue={compendiumState.search}
+          value={compendiumState.search}
           type="search"
           placeholder="Search (Only letters, numbers and hyphens)"
           onKeyUp={handleKeyUp}
+          onChange={handleKeyUp}
           id="search"
           maxLength={25}
           onKeyPress={(e) => {
