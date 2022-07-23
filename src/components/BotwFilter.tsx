@@ -197,7 +197,6 @@ const CompendiumFilter = () => {
   };
 
   const handleOnPreviousChange = () => {
-    console.log('handleprevious');
     // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
     // y devolvemos solo los paises que cumplan el filtro.
     let filteredCompendium = getFilteredCompendium({
@@ -208,13 +207,14 @@ const CompendiumFilter = () => {
       search: compendiumState.search,
     }) as TypeBOTWCompendiumArray;
 
-    console.log(filteredCompendium);
     // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
     dispatch(setElementsToRender(filteredCompendium));
   };
 
   const setReset = () => {
-    window.location.reload();
+    if (compendiumState.search !== '' || compendiumState.category !== 'All') {
+      window.location.reload();
+    }
   };
 
   let searchPreviousValue, categoryPreviousValue;

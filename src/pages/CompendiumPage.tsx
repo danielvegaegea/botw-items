@@ -24,6 +24,10 @@ const StyledCompendiumPage = styled.div`
   max-width: 80vw;
   margin-left: 0rem;
 
+  .arrow:hover {
+    filter: invert(75%);
+  }
+
   & h3 {
     color: yellow;
   }
@@ -91,6 +95,17 @@ const StyledCompendiumTittle = styled.div`
   }
 `;
 
+const StyledUpArrow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* height: 2rem; */
+  img {
+    max-width: 5rem;
+    max-height: 5rem;
+    transform: rotate(180deg) scale(1, 0.5);
+  }
+`;
 const StyledLeftArrow = styled.div`
   max-width: 5rem;
   transform: rotate(90deg) scale(1, 0.5);
@@ -218,6 +233,17 @@ const CompendiumPage = () => {
             <title>BOTW Vade Mecum: {eName}</title>
           </Helmet>
           <StyledCompendiumPage className="zelda-window">
+            <Link to={`/vade-mecum`}>
+              <StyledUpArrow className="left-arrow arrow">
+                <div>
+                  <img
+                    src={botwArrow}
+                    className="counter-logo"
+                    alt="Breath of the Wild Logo"
+                  />
+                </div>
+              </StyledUpArrow>
+            </Link>
             <StyledCompendiumTittle>
               <Link to={`/compendium/${prevId}`}>
                 <StyledLeftArrow className="left-arrow arrow">
