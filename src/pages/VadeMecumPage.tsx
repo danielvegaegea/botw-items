@@ -11,6 +11,7 @@ import {
   setCompendiumFromData,
   setElementsToRender,
   setElementsInArray,
+  setCategoriesInArray,
   setError,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 // Types
@@ -108,29 +109,26 @@ const VadeMecum = () => {
   const makeEquipmentCategories = async (
     arrayData: TypeBOTWCompendiumArray,
   ) => {
+    let data = {
+      Axes: [] as TypeBOTWCompendiumArray,
+      Arrows: [] as TypeBOTWCompendiumArray,
+      Blades: [] as TypeBOTWCompendiumArray,
+      Blunt: [] as TypeBOTWCompendiumArray,
+      Bows: [] as TypeBOTWCompendiumArray,
+      Hammers: [] as TypeBOTWCompendiumArray,
+      Long: [] as TypeBOTWCompendiumArray,
+      NonCombat: [] as TypeBOTWCompendiumArray,
+      Rods: [] as TypeBOTWCompendiumArray,
+      Throwing: [] as TypeBOTWCompendiumArray,
+      Shields: [] as TypeBOTWCompendiumArray,
+    };
     let searchString: Array<RegExp>,
       resetSrc: Array<RegExp> = [];
-
     for (let i = 0; i < 10; i++) {
       resetSrc[i] = /(?=a)b/;
     }
-
-    let search: Array<RegExp> = [];
-
-    /* searchString: Array<RegExp> = [
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-      nothing,
-    ]; */
-
     searchString = resetSrc;
+    let filteredCompendium: TypeBOTWCompendiumArray;
 
     const newSearch = (searchAr: Array<RegExp>) => {
       let data = resetSrc;
@@ -144,7 +142,6 @@ const VadeMecum = () => {
       let filteredData = arrayData
         ? (arrayData.filter((cElement: TypeCompendiumElement) => {
             // Filtramos propiamente el compendio y los devolvemos.
-            //console.log(typeof searchString);
             return (
               searchString[0].test(cElement.name) ||
               searchString[1].test(cElement.name) ||
@@ -163,11 +160,13 @@ const VadeMecum = () => {
     };
 
     // Preparing Axes Array
-    //searchString[0] = new RegExp('axe', 'i');
     searchString = newSearch([/axe/i]);
-    let filteredCompendium = filterArray(searchString);
-    console.log('Axes:');
-    console.log(filteredCompendium);
+    filteredCompendium = filterArray(searchString);
+    data.Axes = filteredCompendium;
+    // Preparing Arrows
+    searchString = newSearch([/arrow/i]);
+    filteredCompendium = filterArray(searchString);
+    data.Arrows = filteredCompendium;
     // Preparing Blades
     searchString = newSearch([
       /sword/i,
@@ -182,18 +181,15 @@ const VadeMecum = () => {
       /sickle/i,
     ]);
     filteredCompendium = filterArray(searchString);
-    console.log('Blades:');
-    console.log(filteredCompendium);
+    data.Blades = filteredCompendium;
     // Preparing Blunt
     searchString = newSearch([/boko bat/i, /club/i, / arm/i, /ladle/i]);
     filteredCompendium = filterArray(searchString);
-    console.log('Blunt:');
-    console.log(filteredCompendium);
+    data.Blunt = filteredCompendium;
     // Preparing Bows
     searchString = newSearch([/bow/i]);
     filteredCompendium = filterArray(searchString);
-    console.log('bows:');
-    console.log(filteredCompendium);
+    data.Bows = filteredCompendium;
     // Preparing Hammers
     searchString = newSearch([
       /hammer/i,
@@ -203,13 +199,11 @@ const VadeMecum = () => {
       /smasher/i,
     ]);
     filteredCompendium = filterArray(searchString);
-    console.log('Hammers:');
-    console.log(filteredCompendium);
+    data.Hammers = filteredCompendium;
     // Preparing Long
     searchString = newSearch([/spear/i, /trident/i, /halberd/i, /harpoon/i]);
     filteredCompendium = filterArray(searchString);
-    console.log('Long:');
-    console.log(filteredCompendium);
+    data.Long = filteredCompendium;
     // Preparing Non Combat
     searchString = newSearch([
       /pitchfork/i,
@@ -222,23 +216,21 @@ const VadeMecum = () => {
       /mop/i,
     ]);
     filteredCompendium = filterArray(searchString);
-    console.log('Non Combat:');
-    console.log(filteredCompendium);
+    data.NonCombat = filteredCompendium;
     // Preparing Rods Array
     searchString = newSearch([/rod/i]);
     filteredCompendium = filterArray(searchString);
-    console.log('Rods:');
-    console.log(filteredCompendium);
+    data.Rods = filteredCompendium;
     // Preparing Throwing Array
     searchString = newSearch([/boomerang/i]);
     filteredCompendium = filterArray(searchString);
-    console.log('Throwing:');
-    console.log(filteredCompendium);
+    data.Throwing = filteredCompendium;
     // Preparing Shields
     searchString = newSearch([/shield/i, /daybreaker/i]);
     filteredCompendium = filterArray(searchString);
-    console.log('Shield:');
-    console.log(filteredCompendium);
+    data.Shields = filteredCompendium;
+    // Dispatch Data
+    dispatch(setCategoriesInArray(data));
   };
 
   const makeCompendiumArray = async (

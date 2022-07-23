@@ -9,6 +9,17 @@ import type {
 export interface State {
   compendium: null | TypeBOTWCompendiumResponseData;
   compendiumArray: null | TypeBOTWCompendiumArray;
+  compentiumEqAxesArray: null | TypeBOTWCompendiumArray;
+  compentiumEqArrowsArray: null | TypeBOTWCompendiumArray;
+  compentiumEqBladesArray: null | TypeBOTWCompendiumArray;
+  compentiumEqBluntArray: null | TypeBOTWCompendiumArray;
+  compentiumEqBowsArray: null | TypeBOTWCompendiumArray;
+  compentiumEqHammersArray: null | TypeBOTWCompendiumArray;
+  compentiumEqLongArray: null | TypeBOTWCompendiumArray;
+  compentiumEqNonCombatArray: null | TypeBOTWCompendiumArray;
+  compentiumEqRodsArray: null | TypeBOTWCompendiumArray;
+  compentiumEqThrowingArray: null | TypeBOTWCompendiumArray;
+  compentiumEqShieldsArray: null | TypeBOTWCompendiumArray;
   elementsToRender: null | TypeBOTWCompendiumArray;
   error: boolean;
   errorMsg: string;
@@ -19,6 +30,17 @@ export interface State {
 export const initialState: State = {
   compendium: null,
   compendiumArray: null,
+  compentiumEqAxesArray: null,
+  compentiumEqArrowsArray: null,
+  compentiumEqBladesArray: null,
+  compentiumEqBluntArray: null,
+  compentiumEqBowsArray: null,
+  compentiumEqHammersArray: null,
+  compentiumEqLongArray: null,
+  compentiumEqNonCombatArray: null,
+  compentiumEqRodsArray: null,
+  compentiumEqThrowingArray: null,
+  compentiumEqShieldsArray: null,
   elementsToRender: null,
   error: false,
   errorMsg: '',
@@ -58,6 +80,34 @@ export const compendiumSlice = createSlice({
     ) => {
       state.compendiumArray = action.payload;
     },
+    setCategoriesInArray: (
+      state: State,
+      action: PayloadAction<{
+        Axes: TypeBOTWCompendiumArray;
+        Arrows: TypeBOTWCompendiumArray;
+        Blades: TypeBOTWCompendiumArray;
+        Blunt: TypeBOTWCompendiumArray;
+        Bows: TypeBOTWCompendiumArray;
+        Hammers: TypeBOTWCompendiumArray;
+        Long: TypeBOTWCompendiumArray;
+        NonCombat: TypeBOTWCompendiumArray;
+        Rods: TypeBOTWCompendiumArray;
+        Throwing: TypeBOTWCompendiumArray;
+        Shields: TypeBOTWCompendiumArray;
+      }>,
+    ) => {
+      state.compentiumEqAxesArray = action.payload.Axes;
+      state.compentiumEqArrowsArray = action.payload.Arrows;
+      state.compentiumEqBladesArray = action.payload.Blades;
+      state.compentiumEqBluntArray = action.payload.Blunt;
+      state.compentiumEqBowsArray = action.payload.Bows;
+      state.compentiumEqHammersArray = action.payload.Hammers;
+      state.compentiumEqLongArray = action.payload.Long;
+      state.compentiumEqNonCombatArray = action.payload.NonCombat;
+      state.compentiumEqRodsArray = action.payload.Rods;
+      state.compentiumEqThrowingArray = action.payload.Throwing;
+      state.compentiumEqShieldsArray = action.payload.Shields;
+    },
     setSearch: (state: State, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
@@ -71,6 +121,7 @@ export const {
   setCategory,
   setElementsToRender,
   setElementsInArray,
+  setCategoriesInArray,
   setSearch,
 } = compendiumSlice.actions;
 

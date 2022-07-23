@@ -118,9 +118,59 @@ const CompendiumFilter = () => {
           .creatures.non_food as TypeBOTWCompendiumArray;
         break;
       }
-      case 'Equipment': {
-        filteredCompendiumByCategory = compendiumState.compendium?.data
-          .equipment as TypeBOTWCompendiumArray;
+      case 'Equipment_Axes': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqAxesArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Arrows': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqArrowsArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Blades': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqBladesArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Blunt': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqBluntArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Bows': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqBowsArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Hammers': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqHammersArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Long': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqLongArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Non_Combat': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqNonCombatArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Rods': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqRodsArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Throwing': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqThrowingArray as TypeBOTWCompendiumArray;
+        break;
+      }
+      case 'Equipment_Shields': {
+        filteredCompendiumByCategory =
+          compendiumState.compentiumEqShieldsArray as TypeBOTWCompendiumArray;
         break;
       }
       case 'Materials': {
@@ -250,7 +300,17 @@ const CompendiumFilter = () => {
           <option value="All">All</option>
           <option value="Food">Creatures (food)</option>
           <option value="Non_Food">Creatures (non food)</option>
-          <option value="Equipment">Equipment</option>
+          <option value="Equipment_Axes">Equipment (Axes)</option>
+          <option value="Equipment_Arrows">Equipment (Arrows)</option>
+          <option value="Equipment_Blades">Equipment (Blades)</option>
+          <option value="Equipment_Blunt">Equipment (Blunt)</option>
+          <option value="Equipment_Bows">Equipment (Bows)</option>
+          <option value="Equipment_Hammers">Equipment (Hammers)</option>
+          <option value="Equipment_Long">Equipment (Spears)</option>
+          <option value="Equipment_Non_Combat">Equipment (Non Combat)</option>
+          <option value="Equipment_Rods">Equipment (Rods)</option>
+          <option value="Equipment_Throwing">Equipment (Throwing)</option>
+          <option value="Equipment_Shields">Equipment (Shields)</option>
           <option value="Materials">Materials</option>
           <option value="Monsters">Monsters</option>
           <option value="Treasure">Treasure</option>
