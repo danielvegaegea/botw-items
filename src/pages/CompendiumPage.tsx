@@ -1,11 +1,22 @@
+// Router
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// Redux
+import { useEffect, useState } from 'react';
+// Helmet
 import { Helmet } from 'react-helmet-async';
+// Styled Components
 import styled from 'styled-components';
-import { TypeCompendiumElement, TypeGenericElement } from '../types';
+// Tools
 import { capitalizeWords } from '../tools/tools';
+// Types
+import { TypeCompendiumElement, TypeGenericElement } from '../types';
+// SVG
+import botwArrow from '../assets/svg/botw-arrow.svg';
 
+//
+// Styled components Functions
+//
 const StyledCompendiumPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,7 +54,9 @@ const StyledCompendiumPage = styled.div`
     min-width: 20rem;
     max-width: 80vw;
     align-items: center;
-
+    & .title {
+      color: blue;
+    }
     & article {
       flex-direction: column;
       justify-content: unset;
@@ -66,6 +79,25 @@ const StyledCompendiumPage = styled.div`
       padding: 0.5rem;
     } */
   }
+`;
+
+const StyledCompendiumTittle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 8rem;
+  @media screen and (orientation: portrait) and (max-width: 540px) {
+    font-size: 90%;
+  }
+`;
+
+const StyledLeftArrow = styled.div`
+  max-width: 5rem;
+  transform: rotate(90deg) scale(1, 0.5);
+`;
+const StyledRightArrow = styled.div`
+  max-width: 5rem;
+  transform: rotate(-90deg) scale(1, 0.5);
 `;
 
 const StyledErrorPage = styled.div`
@@ -111,6 +143,7 @@ const CompendiumPage = () => {
   pElement = element ? element : null;
   //    Common elements
   const eName = capitalizeWords(pElement ? pElement.name : '-');
+  const eId = pElement ? pElement.id : '-';
   const eImage = pElement ? pElement.image : '';
   const eCategory = capitalizeWords(pElement ? pElement.category : '-');
   const eDescription = pElement ? pElement.description : '-';
@@ -165,6 +198,19 @@ const CompendiumPage = () => {
   let content;
 
   if (pageId > 0 && pageId < 390) {
+    let prevId, nextId;
+
+    if (pageId === 1) {
+      prevId = 389;
+      nextId = 2;
+    } else if (pageId === 389) {
+      prevId = 388;
+      nextId = 1;
+    } else {
+      prevId = pageId - 1;
+      nextId = pageId + 1;
+    }
+
     if (element) {
       content = (
         <>
@@ -172,9 +218,29 @@ const CompendiumPage = () => {
             <title>BOTW Vade Mecum: {eName}</title>
           </Helmet>
           <StyledCompendiumPage className="zelda-window">
-            <div className="title">
-              <h2>{eName}</h2>
-            </div>
+            <StyledCompendiumTittle>
+              <Link to={`/compendium/${prevId}`}>
+                <StyledLeftArrow className="left-arrow arrow">
+                  <img
+                    src={botwArrow}
+                    className="counter-logo"
+                    alt="Breath of the Wild Logo"
+                  />
+                </StyledLeftArrow>
+              </Link>
+              <h2>
+                {eId}: {eName}
+              </h2>
+              <Link to={`/compendium/${nextId}`}>
+                <StyledRightArrow className="left-arrow arrow">
+                  <img
+                    src={botwArrow}
+                    className="counter-logo"
+                    alt="Breath of the Wild Logo"
+                  />
+                </StyledRightArrow>
+              </Link>
+            </StyledCompendiumTittle>
             <article>
               <div className="picture-container">
                 <picture className="zelda-window">
