@@ -48,6 +48,43 @@ const StyledSection = styled('section')`
   }
 `;
 
+const StyledResetButton = styled.button`
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 0.2rem;
+  border: 1px solid gray;
+  border-radius: 15px;
+  width: 5rem;
+  @media screen and (orientation: portrait) {
+    margin-right: 2rem;
+  }
+`;
+
+const StyledPanel = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & p {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: lightblue;
+    border: 1px solid gray;
+    border-radius: 5px;
+    line-height: 0.9rem;
+    height: 1.7rem;
+    margin: 0.4rem 1rem 0 0;
+    padding: 0.4rem 0.4rem 1rem 0.4rem;
+  }
+  @media screen and (orientation: portrait) and (max-width: 540px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    button {
+      margin-top: 0.3rem;
+    }
+  }
+`;
+//
+// Functions
+//
 const CompendiumFilter = () => {
   // Generates an array with all 389 elements from the compendium and stores it in
   // BOTWCompendiumArray for use in the "all" category.
@@ -176,6 +213,10 @@ const CompendiumFilter = () => {
     dispatch(setElementsToRender(filteredCompendium));
   };
 
+  const setReset = () => {
+    window.location.reload();
+  };
+
   let searchPreviousValue, categoryPreviousValue;
   searchPreviousValue = compendiumState.search;
   categoryPreviousValue = compendiumState.category;
@@ -227,6 +268,12 @@ const CompendiumFilter = () => {
           }}
         />
       </form>
+      <StyledPanel>
+        <p>Found: {compendiumState.elementsToRender?.length} elements</p>
+        <StyledResetButton title="Reset" type="button" onClick={setReset}>
+          Reset
+        </StyledResetButton>
+      </StyledPanel>
     </StyledSection>
   );
 };
