@@ -277,6 +277,16 @@ const CompendiumFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  let promptString = '';
+  if (
+    compendiumState.elementsToRender &&
+    compendiumState.elementsToRender?.length > 0
+  ) {
+    promptString =
+      'Found ' + compendiumState.elementsToRender?.length + ' elements';
+  } else {
+    promptString = 'No matches found';
+  }
   /* else {
     searchPreviousValue = '';
   }
@@ -329,7 +339,7 @@ const CompendiumFilter = () => {
         />
       </form>
       <StyledPanel>
-        <p>Found: {compendiumState.elementsToRender?.length} elements</p>
+        <p>{promptString}</p>
         <StyledResetButton title="Reset" type="button" onClick={setReset}>
           Reset
         </StyledResetButton>
