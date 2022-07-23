@@ -148,7 +148,11 @@ const VadeMecum = () => {
     if (fetchData) {
       arrayData = await makeCompendiumArray(fetchData);
     }
-    if (arrayData) {
+    if (
+      arrayData &&
+      compendiumState.search === '' &&
+      compendiumState.category === 'All'
+    ) {
       await makeCompendiumToRender(arrayData as TypeBOTWCompendiumArray);
     }
   };

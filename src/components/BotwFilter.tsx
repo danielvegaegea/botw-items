@@ -1,20 +1,25 @@
-import { ChangeEvent } from 'react';
+// React
+import { ChangeEvent, useEffect } from 'react';
+// Redux
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+// Styled Components
 import styled from 'styled-components';
-
+// Compendium Slyce
 import {
   selectCompendium,
   setCategory,
   setElementsToRender,
   setSearch,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
-
+// Types
 import {
   TypeBOTWCompendiumArray,
   TypeCompendiumElement,
   TypeCategory,
 } from '../types';
-
+//
+// Styed Components Functions
+//
 const StyledSection = styled('section')`
   padding: 0.5rem;
   & form {
@@ -154,12 +159,53 @@ const CompendiumFilter = () => {
     dispatch(setElementsToRender(filteredCompendium));
   };
 
+  const handleOnPreviousChange = () => {
+    console.log('handleprevious');
+    // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
+    // y devolvemos solo los paises que cumplan el filtro.
+    let filteredCompendium = getFilteredCompendium({
+      category: compendiumState.category,
+    }) as TypeBOTWCompendiumArray;
+
+    filteredCompendium = getFilteredCompendium({
+      search: compendiumState.search,
+    }) as TypeBOTWCompendiumArray;
+
+    console.log(filteredCompendium);
+    // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
+    dispatch(setElementsToRender(filteredCompendium));
+  };
+
+  let searchPreviousValue, categoryPreviousValue;
+  searchPreviousValue = compendiumState.search;
+  categoryPreviousValue = compendiumState.category;
+  useEffect(() => {
+    if (compendiumState.search !== '' || compendiumState.category !== 'All') {
+      handleOnPreviousChange();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /* else {
+    searchPreviousValue = '';
+  }
+  if (compendiumState.category !== "All") {
+    categoryPreviousValue = compendiumState.category;
+  } else {
+    categoryPreviousValue = "All";
+  } */
+
   return (
     <StyledSection>
       <h1>Vade Mecum</h1>
       <form>
         <label htmlFor="categories">Categories</label>
-        <select name="categories" id="categories" onChange={handleOnChange}>
+        <select
+          name="categories"
+          id="categories"
+          defaultValue={categoryPreviousValue}
+          onChange={handleOnChange}
+        >
           <option value="All">All</option>
           <option value="Food">Creatures (food)</option>
           <option value="Non_Food">Creatures (non food)</option>
@@ -170,6 +216,7 @@ const CompendiumFilter = () => {
         </select>
         <label htmlFor="search">Search</label>
         <input
+          defaultValue={searchPreviousValue}
           type="search"
           placeholder="Search (Only letters, numbers and hyphens)"
           onKeyUp={handleKeyUp}
