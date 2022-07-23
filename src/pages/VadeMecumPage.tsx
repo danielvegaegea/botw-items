@@ -105,6 +105,142 @@ const VadeMecum = () => {
     }
   };
 
+  const makeEquipmentCategories = async (
+    arrayData: TypeBOTWCompendiumArray,
+  ) => {
+    let searchString: Array<RegExp>,
+      resetSrc: Array<RegExp> = [];
+
+    for (let i = 0; i < 10; i++) {
+      resetSrc[i] = /(?=a)b/;
+    }
+
+    let search: Array<RegExp> = [];
+
+    /* searchString: Array<RegExp> = [
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+      nothing,
+    ]; */
+
+    searchString = resetSrc;
+
+    const newSearch = (searchAr: Array<RegExp>) => {
+      let data = resetSrc;
+      for (let i = 0; i < 10; i++) {
+        data[i] = searchAr[i] ? searchAr[i] : /(?=a)b/;
+      }
+      return data;
+    };
+
+    const filterArray = (searchString: RegExp[]) => {
+      let filteredData = arrayData
+        ? (arrayData.filter((cElement: TypeCompendiumElement) => {
+            // Filtramos propiamente el compendio y los devolvemos.
+            //console.log(typeof searchString);
+            return (
+              searchString[0].test(cElement.name) ||
+              searchString[1].test(cElement.name) ||
+              searchString[2].test(cElement.name) ||
+              searchString[3].test(cElement.name) ||
+              searchString[4].test(cElement.name) ||
+              searchString[5].test(cElement.name) ||
+              searchString[6].test(cElement.name) ||
+              searchString[7].test(cElement.name) ||
+              searchString[8].test(cElement.name) ||
+              searchString[9].test(cElement.name)
+            );
+          }) as TypeBOTWCompendiumArray)
+        : ([] as TypeBOTWCompendiumArray);
+      return filteredData;
+    };
+
+    // Preparing Axes Array
+    //searchString[0] = new RegExp('axe', 'i');
+    searchString = newSearch([/axe/i]);
+    let filteredCompendium = filterArray(searchString);
+    console.log('Axes:');
+    console.log(filteredCompendium);
+    // Preparing Blades
+    searchString = newSearch([
+      /sword/i,
+      /claymore/i,
+      /blade/i,
+      /obliterator/i,
+      /windcleaver/i,
+      /scimitar/i,
+      / edge/i,
+      /edge /i,
+      /carver/i,
+      /sickle/i,
+    ]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Blades:');
+    console.log(filteredCompendium);
+    // Preparing Blunt
+    searchString = newSearch([/boko bat/i, /club/i, / arm/i, /ladle/i]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Blunt:');
+    console.log(filteredCompendium);
+    // Preparing Bows
+    searchString = newSearch([/bow/i]);
+    filteredCompendium = filterArray(searchString);
+    console.log('bows:');
+    console.log(filteredCompendium);
+    // Preparing Hammers
+    searchString = newSearch([
+      /hammer/i,
+      /crusher/i,
+      /boulder/i,
+      /drillshaft/i,
+      /smasher/i,
+    ]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Hammers:');
+    console.log(filteredCompendium);
+    // Preparing Long
+    searchString = newSearch([/spear/i, /trident/i, /halberd/i, /harpoon/i]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Long:');
+    console.log(filteredCompendium);
+    // Preparing Non Combat
+    searchString = newSearch([
+      /pitchfork/i,
+      /hoe/i,
+      /torch/i,
+      /branch/i,
+      / lid/i,
+      /leaf/i,
+      /oar/i,
+      /mop/i,
+    ]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Non Combat:');
+    console.log(filteredCompendium);
+    // Preparing Rods Array
+    searchString = newSearch([/rod/i]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Rods:');
+    console.log(filteredCompendium);
+    // Preparing Throwing Array
+    searchString = newSearch([/boomerang/i]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Throwing:');
+    console.log(filteredCompendium);
+    // Preparing Shields
+    searchString = newSearch([/shield/i, /daybreaker/i]);
+    filteredCompendium = filterArray(searchString);
+    console.log('Shield:');
+    console.log(filteredCompendium);
+  };
+
   const makeCompendiumArray = async (
     fetchData: TypeBOTWCompendiumResponseData,
   ) => {
@@ -153,6 +289,9 @@ const VadeMecum = () => {
       compendiumState.search === '' &&
       compendiumState.category === 'All'
     ) {
+      await makeEquipmentCategories(
+        fetchData?.data.equipment as TypeBOTWCompendiumArray,
+      );
       await makeCompendiumToRender(arrayData as TypeBOTWCompendiumArray);
     }
   };
