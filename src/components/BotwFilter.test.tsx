@@ -1,12 +1,15 @@
+// Test
 import '@testing-library/jest-dom/extend-expect';
-import CompendiumFilter from './BotwFilter';
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+// Redux
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+// Components
+import CompendiumFilter from './BotwFilter';
 import compendiumReducer, {
   initialState,
 } from '../features/hyruleCompendium/hyruleCompendiumSlice';
-import userEvent from '@testing-library/user-event';
 
 describe('Compendium Filter', () => {
   test('renders', () => {

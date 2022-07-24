@@ -1,6 +1,8 @@
 # Disclaimer
 
-This is not used to render the page. It's only used for referencing purposes.
+Este archivo no se usa en el renderizado de la página. Su contenido sirve para
+almacenar los distintos textos (excluyendo palabras sueltas) que usaremos en
+la página.
 
 ---
 

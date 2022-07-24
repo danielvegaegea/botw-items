@@ -1,7 +1,6 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 // App
 import App from './app/App';
 import reportWebVitals from './tools/reportWebVitals';

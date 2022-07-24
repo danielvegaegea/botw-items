@@ -1,9 +1,13 @@
-//import botwLogo from '../assets/svg/botw-logo.svg';
-import botwLogo from '../assets/svg/botw-icon.svg';
+// Router
 import { Link } from 'react-router-dom';
+// Styled Components
 import styled from 'styled-components';
+// Assets
+import botwLogo from '../assets/svg/botw-icon.svg';
 
-// Styles
+//
+// Styles Functions
+//
 const StyledContainer = styled('div')`
   font-family: 'The Wild Breath of Zelda', sans-serif;
   display: flex;
@@ -12,18 +16,19 @@ const StyledContainer = styled('div')`
   padding: 0 1rem;
   margin: 0 0 1rem 0;
 `;
+
 const Styledlogo = styled('img')`
   height: 7rem;
   margin: 0.5rem;
-  /* Portrait */
 `;
+
 const StyledDiv = styled('div')`
-  //border: 2px solid blue;
   display: flex;
   padding-top: 0.5rem;
   flex-direction: column;
   align-items: center;
 `;
+
 const StyledTitle = styled('h2')`
   margin: 0;
   width: 20rem;
@@ -34,16 +39,17 @@ const StyledTitle = styled('h2')`
     width: 13rem;
   }
 `;
+
 const StyledUl = styled('ul')`
   display: flex;
   list-style-type: none;
   margin: 0.5rem 0 0 0.5rem;
   padding: 0 0 0 0.5rem;
-  /* Portrait */
   @media screen and (orientation: portrait) and (max-width: 440px) {
     flex-direction: column;
   }
 `;
+
 const StyledLi = styled('li')`
   margin-right: 1rem;
   a:link,
@@ -57,12 +63,18 @@ const StyledLi = styled('li')`
     color: yellow;
   }
 `;
+
 const StyledLink = styled(Link)`
   color: unset;
   text-decoration: none;
 `;
 
+//
+// Functions
+//
 const BotwHeader = () => {
+  // Default
+  // Cabecera con un menu nav.
   return (
     <StyledContainer className="zelda-window">
       <Link to="/">

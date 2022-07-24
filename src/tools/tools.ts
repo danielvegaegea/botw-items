@@ -1,5 +1,6 @@
 export const capitalizeWords = (string: string) => {
-  // Gets a string, verifies it and returns it with capitalized words.
+  // Obtiene una string, la verifica y la devuelve con palabraas con la primera+
+  // letra en mayúsculas.
   if (typeof string !== 'string') {
     string = '';
   }

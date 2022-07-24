@@ -1,37 +1,52 @@
+// React
 import React from 'react';
-import logo from '../assets/svg/logo.svg';
-import { Counter } from '../features/counter/Counter';
-import '../css/CounterPage.css';
+// Helmet
 import { Helmet } from 'react-helmet-async';
+// Slice
+import { Counter } from '../features/counter/Counter';
+// CSS
+import '../css/CounterPage.css';
+// Assets
+import logo from '../assets/svg/logo.svg';
 import botwTfLogo from '../assets/svg/triforce.svg';
 import styled from 'styled-components';
 
-function CounterPage() {
-  const Styledlogo = styled('img')`
-    height: 20rem;
-    margin: 0.5rem;
-    @media screen and (orientation: portrait) {
-      height: 15rem;
-    }
-  `;
+//
+// Styled Functions
+//
+const Styledlogo = styled('img')`
+  height: 20rem;
+  margin: 0.5rem;
+  @media screen and (orientation: portrait) {
+    height: 15rem;
+  }
+`;
 
-  const StyledContainer = styled('div')`
-    & h2 {
-      font-family: 'The Wild Breath of Zelda', sans-serif;
-    }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1rem 0 2rem 0;
-    padding: 1rem;
-    @media screen and (orientation: portrait) {
-      min-width: unset;
-      background-attachment: initial;
-      max-width: 88vw;
-    }
-  `;
+const StyledContainer = styled('div')`
+  & h2 {
+    font-family: 'The Wild Breath of Zelda', sans-serif;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+  padding: 1rem;
+  @media screen and (orientation: portrait) {
+    min-width: unset;
+    background-attachment: initial;
+    max-width: 88vw;
+  }
+`;
+
+//
+// Functions
+//
+function CounterPage() {
+  // Default
+  // Esta función proviene del scaffolding de Redux y se ha aprovechado, con
+  // algunas alteraciones, a modo de easter egg.
   return (
-    // Classnames are maintained from the Redux original page.
+    // ClassNames y estilo se han mantenido desde la página original de Redux
     <>
       <StyledContainer className="zelda-window">
         <Styledlogo src={botwTfLogo} alt="Triforce Logo" />

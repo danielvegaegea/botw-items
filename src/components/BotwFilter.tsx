@@ -17,6 +17,7 @@ import {
   TypeCompendiumElement,
   TypeCategory,
 } from '../types';
+
 //
 // Styed Components Functions
 //
@@ -82,15 +83,20 @@ const StyledPanel = styled.div`
     }
   }
 `;
+
 //
 // Functions
 //
 const CompendiumFilter = () => {
-  // Generates an array with all 389 elements from the compendium and stores it in
-  // BOTWCompendiumArray for use in the "all" category.
+  // Default
+  // Genera un array con todos los 389 elementos del compendio y los almacena en
+  // BOTWCompendiumArray para ser usados en la categoróa "All".
   const compendiumState = useAppSelector(selectCompendium);
   const dispatch = useAppDispatch();
 
+  //
+  // Sub-Functions
+  //
   const getFilteredCompendium = ({
     // Obtenemos los valores search y region de sus estados.
     search = compendiumState.search,
@@ -103,6 +109,7 @@ const CompendiumFilter = () => {
     let filteredCompendiumByCategory: TypeBOTWCompendiumArray =
       compendiumState.compendiumArray;
 
+    // Establecemos casos para cada categoría seleccionada.
     switch (category) {
       case 'All': {
         filteredCompendiumByCategory = compendiumState.compendiumArray;
@@ -190,6 +197,7 @@ const CompendiumFilter = () => {
       }
     }
 
+    // Generamos filteredCompendium y lo devolvemos.
     const filteredCompendium = filteredCompendiumByCategory
       ? (filteredCompendiumByCategory.filter(
           (cElement: TypeCompendiumElement) => {
@@ -233,6 +241,8 @@ const CompendiumFilter = () => {
       target: { value },
     } = event;
     // El valor lo agrego al estado global y lo asigno a propiedad search
+    // También impido que contenga cualquier signo que no sea el guión para evitar
+    // las inyecciones de código.
     value = value.replace(/[~`!@#$%^&()_={}[\]:;,.<>+/?]/g, '');
     dispatch(setSearch(value));
 
@@ -246,44 +256,20 @@ const CompendiumFilter = () => {
     dispatch(setElementsToRender(filteredCompendium));
   };
 
-  const handleOnPreviousChange = () => {
-    // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
-    // y devolvemos solo los paises que cumplan el filtro.
-    let filteredCompendium = getFilteredCompendium({
-      category: compendiumState.category,
-    }) as TypeBOTWCompendiumArray;
-
-    filteredCompendium = getFilteredCompendium({
-      search: compendiumState.search,
-    }) as TypeBOTWCompendiumArray;
-
-    // Informamos que hay un cambio de estado, ergo, re renderiza/pinta
-    dispatch(setElementsToRender(filteredCompendium));
-  };
-
   const setReset = () => {
-    /* if (compendiumState.search !== '' || compendiumState.category !== 'All') {
-      //window.location.reload();
-      
-    } */
-    //console.log('bñah');
-    //categoryPreviousValue = 'All';
-    //searchPreviousValue = '';
+    // Función que resetea los valores de los campos y devuelve como elementos a
+    // renderizar la tabla generada anteriormente, sin tener que volver a pedirla
+    // a la API, recargar la página o cambiar los datos a mano.
     dispatch(setCategory('All'));
     dispatch(setSearch(''));
     dispatch(setElementsToRender(compendiumState.compendiumArray));
   };
 
-  let searchPreviousValue, categoryPreviousValue;
-  //searchPreviousValue = compendiumState.search;
-  //categoryPreviousValue = compendiumState.category;
-  useEffect(() => {
-    if (compendiumState.search !== '' || compendiumState.category !== 'All') {
-      handleOnPreviousChange();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //
+  // Main
+  //
 
+  // Generamos un prompt para mostrar el número de elementos a renderizar.
   let promptString = '';
   if (
     compendiumState.elementsToRender &&
@@ -294,14 +280,6 @@ const CompendiumFilter = () => {
   } else {
     promptString = 'No matches found';
   }
-  /* else {
-    searchPreviousValue = '';
-  }
-  if (compendiumState.category !== "All") {
-    categoryPreviousValue = compendiumState.category;
-  } else {
-    categoryPreviousValue = "All";
-  } */
 
   return (
     <StyledSection>
@@ -311,8 +289,6 @@ const CompendiumFilter = () => {
         <select
           name="categories"
           id="categories"
-          //defaultValue={compendiumState.category}
-          //defaultValue={categoryPreviousValue}
           value={compendiumState.category}
           onChange={handleOnChange}
         >
@@ -336,8 +312,6 @@ const CompendiumFilter = () => {
         </select>
         <label htmlFor="search">Search</label>
         <input
-          //defaultValue={searchPreviousValue}
-          //defaultValue={compendiumState.search}
           value={compendiumState.search}
           type="search"
           placeholder="Search (Only letters, numbers and hyphens)"

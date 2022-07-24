@@ -1,14 +1,24 @@
+// Router
 import { Link } from 'react-router-dom';
+// Helmet
 import { Helmet } from 'react-helmet-async';
+// Styled Components
 import styled from 'styled-components';
 
+//
+// Styled Functions
+//
 const StyledErrorPage = styled.div`
   margin: 5rem 0 0 0;
   max-width: 25rem;
   padding: 1rem;
 `;
 
+//
+// Functions
+//
 const ErrorPage = () => {
+  // Default
   return (
     <>
       <Helmet>

@@ -1,8 +1,14 @@
+// Helmet
 import { Helmet } from 'react-helmet-async';
+// React Markdown
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+// Styled Components
 import styled from 'styled-components';
 
+//
+//  Styled Functions
+//
 const StyledContainer = styled('div')`
   margin: 1rem 0 0 0;
   width: 50vw;
@@ -15,6 +21,9 @@ const StyledContainer = styled('div')`
   }
 `;
 
+//
+//  Markdown Elements
+//
 const markdownText = `
 # About this page
 
@@ -75,7 +84,11 @@ and can be visited [here](https://tloz-botw-compendium.netlify.app/).
 
 `;
 
+//
+//  Functions
+//
 const About = () => {
+  // Default
   return (
     <>
       <Helmet>

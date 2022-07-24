@@ -1,8 +1,15 @@
+// Router
 import { Link } from 'react-router-dom';
-import { TypeElementPropPage } from '../types/';
+// Styled Components
 import styled from 'styled-components';
+// Tools
 import { capitalizeWords } from '../tools/tools';
+// Types
+import { TypeElementPropPage } from '../types/';
 
+//
+// Styled Functions
+//
 const StyledSection = styled('section')`
   display: flex;
   flex-direction: row;
@@ -36,7 +43,13 @@ const StyledPicuture = styled('picture')`
   display: flex;
 `;
 
+//
+// Functions
+//
 const CompendiumElementEntry = (props: TypeElementPropPage) => {
+  // Default
+  // Este componente dibuja cada linea del Vade Mecum, que aparecerá
+  // en 'VadeMecumPage'.
   let { cName, cImgSrc, cId } = props;
   let c_class = String(cId);
 

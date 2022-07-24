@@ -1,9 +1,16 @@
+// React Markdown
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+// Helmet
 import { Helmet } from 'react-helmet-async';
-import botwLogo from '../assets/svg/botw-logo.svg';
+// Styled Components
 import styled from 'styled-components';
+// Assets
+import botwLogo from '../assets/svg/botw-logo.svg';
 
+//
+// Styled Functions
+//
 const Styledlogo = styled('picture')`
   display: flex;
   justify-content: center;
@@ -28,6 +35,9 @@ const StyledSection = styled('blockquote')`
   }
 `;
 
+//
+// Markdown Functions
+//
 const markdownQuoteText = `
 "I am not **Link**, but I do know him! Even after 18 years, **the
 Legend of Zelda** never stops changing and this game is no
@@ -38,6 +48,9 @@ grown up--a world where he will act different and look different."
 
 const markdownQuoteAuthor = 'Shigeru Miyamoto';
 
+//
+// Functions
+//
 const Homepage = () => {
   return (
     <>

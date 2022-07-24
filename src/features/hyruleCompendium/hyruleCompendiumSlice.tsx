@@ -1,5 +1,7 @@
+// Redux
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+// Types
 import type {
   TypeBOTWCompendiumResponseData,
   TypeBOTWCompendiumArray,
@@ -49,9 +51,10 @@ export const initialState: State = {
 };
 
 export const compendiumSlice = createSlice({
+  // Default
   name: 'compendium',
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
+  // El campo 'reducers' nos permite definir reductores y generar acciones asociadas.
   reducers: {
     setCompendiumFromData: (
       state: State,

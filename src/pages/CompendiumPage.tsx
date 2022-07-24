@@ -2,7 +2,11 @@
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 // Redux
+import { useAppSelector } from '../app/hooks';
+// React
 import { useEffect, useState } from 'react';
+// Slice
+import { selectCompendium } from '../features/hyruleCompendium/hyruleCompendiumSlice';
 // Helmet
 import { Helmet } from 'react-helmet-async';
 // Styled Components
@@ -54,13 +58,9 @@ const StyledCompendiumPage = styled.div`
   }
 
   @media screen and (orientation: portrait) {
-    /* font-size: 120%; */
     min-width: 20rem;
     max-width: 80vw;
     align-items: center;
-    & .title {
-      color: blue;
-    }
     & article {
       flex-direction: column;
       justify-content: unset;
@@ -78,10 +78,6 @@ const StyledCompendiumPage = styled.div`
       display: flex;
       justify-content: center;
     }
-    /* & .element-info {
-      max-width: 30rem;
-      padding: 0.5rem;
-    } */
   }
 `;
 
@@ -99,7 +95,6 @@ const StyledUpArrow = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  /* height: 2rem; */
   img {
     max-width: 5rem;
     max-height: 5rem;
@@ -120,8 +115,11 @@ const StyledErrorPage = styled.div`
   max-width: 25rem;
 `;
 
+//
+// Functions
+//
 const fetchCompendiumByIsoCode = async (isoCode: string) => {
-  //  Gets the page data using the isoCode of the page.
+  //  Obtenemos los datos a renderizar en la página usando el isoCode.
   try {
     const reponse = await fetch(
       `https://botw-compendium.herokuapp.com/api/v2/entry/${isoCode}`,
@@ -134,11 +132,14 @@ const fetchCompendiumByIsoCode = async (isoCode: string) => {
 };
 
 const CompendiumPage = () => {
-  //  The page itself.
+  // Default
+  //  La página que se renderiza cuando el usuario hace click en un elemento.
   const [element, setElement] = useState<TypeCompendiumElement | null>(null);
   const { isoCode } = useParams();
+  const compendiumState = useAppSelector(selectCompendium);
 
   const getElement = async (id: string) => {
+    // Usa fetchCompendiumByIsoCode para obtener los datos y los almacena.
     const elementData: TypeCompendiumElement = await fetchCompendiumByIsoCode(
       id,
     );
@@ -146,14 +147,14 @@ const CompendiumPage = () => {
   };
 
   useEffect(() => {
+    // Llamamos a la función getElement si tenemos isoCode.
     if (isoCode) {
       getElement(isoCode);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isoCode]);
 
-  // Processing the data and creating variables and constants.
-  //    Preparing pElement
+  // Procesamos los datos y creamos variables o constantes.
+  //    Preparando pElement
   let pElement: TypeGenericElement;
   pElement = element ? element : null;
   //    Common elements
@@ -164,12 +165,12 @@ const CompendiumPage = () => {
   const eDescription = pElement ? pElement.description : '-';
   let eLocation = [];
   eLocation[1] = '(None)';
-  //    Label for the Drops prop.
+  //    Label para los Drops prop.
   let hLabel = '';
   let eLabel = [];
 
-  // Contitions of elements to render.
-  //  Common Locations section
+  // Creación de elementos a renderizar.
+  //  Sección de lugares comunes.
   if (pElement?.common_locations) {
     for (let i = 0; i < 4; i++) {
       eLocation[i] = pElement?.common_locations
@@ -209,17 +210,26 @@ const CompendiumPage = () => {
     }
   }
 
+  // Generamos una Id y la usamos para los links de siguiente y anterior, controlando
+  // no pasarnos del último elemento de la api. Los números han sido hardcodeados
+  // en caso de no poder acceder a array asumiendo que no habrá cambios en la API
+  // a estas alturas para ahorrarnos el obtenerlos del Array. Este caso, solo se
+  // produciría si el usuario intentara entrar desde un enlace a un elemento en
+  // concreto.
   const pageId = Number(isoCode!);
   let content;
+  const lastPage: number = compendiumState?.compendiumArray
+    ? compendiumState?.compendiumArray?.length
+    : 389;
 
-  if (pageId > 0 && pageId < 390) {
+  if (pageId > 0 && pageId < lastPage + 1) {
     let prevId, nextId;
 
     if (pageId === 1) {
-      prevId = 389;
+      prevId = lastPage;
       nextId = 2;
-    } else if (pageId === 389) {
-      prevId = 388;
+    } else if (pageId === lastPage) {
+      prevId = lastPage - 1;
       nextId = 1;
     } else {
       prevId = pageId - 1;
@@ -227,6 +237,7 @@ const CompendiumPage = () => {
     }
 
     if (element) {
+      // Solo se renderiza si tenemos element.
       content = (
         <>
           <Helmet>
@@ -308,6 +319,7 @@ const CompendiumPage = () => {
         </>
       );
     } else {
+      // Mientras no esté, mostramos un mensaje de carga.
       content = (
         <>
           <Helmet>
@@ -319,6 +331,8 @@ const CompendiumPage = () => {
     }
     return content;
   } else {
+    // Mensaje de error en caso de que introduzcamos una id como isoCode que no
+    // aparezca en la lista.
     return (
       <>
         <Helmet>

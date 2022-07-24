@@ -25,6 +25,9 @@ import {
 import CompendiumFilter from '../components/BotwFilter';
 import CompendiumElementEntry from '../components/BotwElement';
 
+//
+// Styled Functions
+//
 const StyledFilter = styled('section')`
   margin: 1rem 0;
   min-width: 30rem;
@@ -33,9 +36,6 @@ const StyledFilter = styled('section')`
   }
 `;
 
-//
-// Styled components Functions
-//
 const StyledList = styled('section')`
   margin-left: 0;
   display: flex;
@@ -88,6 +88,7 @@ const getCompendium = async () => {
 };
 
 const VadeMecum = () => {
+  // Default
   const compendiumState = useAppSelector(selectCompendium);
   const { error } = useAppSelector(selectCompendium);
 
@@ -97,8 +98,8 @@ const VadeMecum = () => {
   // Sub-Functions
   //
   const makeCompendiumToRender = async (arrayData: TypeBOTWCompendiumArray) => {
+    // Si tenemos data, establecemos ElementsToRender.
     try {
-      //const data: TypeBOTWCompendiumArray = compendiumState.compendiumArray;
       const data = arrayData ? arrayData : null;
       data && dispatch(setElementsToRender(data));
     } catch (error) {
@@ -107,6 +108,10 @@ const VadeMecum = () => {
   };
 
   const makeEquipmentCategories = async (
+    // Generamos los array con las distintas categorías desde la Array generada
+    // previamente. Para ello, usamos una serie de palabras claves pre-establecidas
+    // y comprobadas para que surtan el efecto adecuado, asumiendo que la API
+    // no cambie en el futuro, cosa poco probable dada la antiguedad del juego.
     arrayData: TypeBOTWCompendiumArray,
   ) => {
     let data = {
@@ -159,15 +164,15 @@ const VadeMecum = () => {
       return filteredData;
     };
 
-    // Preparing Axes Array
+    // Preparando Axes Array
     searchString = newSearch([/axe/i]);
     filteredCompendium = filterArray(searchString);
     data.Axes = filteredCompendium;
-    // Preparing Arrows
+    // Preparando Arrows
     searchString = newSearch([/arrow/i]);
     filteredCompendium = filterArray(searchString);
     data.Arrows = filteredCompendium;
-    // Preparing Blades
+    // Preparando Blades
     searchString = newSearch([
       /sword/i,
       /claymore/i,
@@ -182,15 +187,15 @@ const VadeMecum = () => {
     ]);
     filteredCompendium = filterArray(searchString);
     data.Blades = filteredCompendium;
-    // Preparing Blunt
+    // Preparando Blunt
     searchString = newSearch([/boko bat/i, /club/i, / arm/i, /ladle/i]);
     filteredCompendium = filterArray(searchString);
     data.Blunt = filteredCompendium;
-    // Preparing Bows
+    // Preparando Bows
     searchString = newSearch([/bow/i]);
     filteredCompendium = filterArray(searchString);
     data.Bows = filteredCompendium;
-    // Preparing Hammers
+    // Preparando Hammers
     searchString = newSearch([
       /hammer/i,
       /crusher/i,
@@ -200,11 +205,11 @@ const VadeMecum = () => {
     ]);
     filteredCompendium = filterArray(searchString);
     data.Hammers = filteredCompendium;
-    // Preparing Long
+    // Preparando Long
     searchString = newSearch([/spear/i, /trident/i, /halberd/i, /harpoon/i]);
     filteredCompendium = filterArray(searchString);
     data.Long = filteredCompendium;
-    // Preparing Non Combat
+    // Preparando Non Combat
     searchString = newSearch([
       /pitchfork/i,
       /hoe/i,
@@ -217,15 +222,15 @@ const VadeMecum = () => {
     ]);
     filteredCompendium = filterArray(searchString);
     data.NonCombat = filteredCompendium;
-    // Preparing Rods Array
+    // Preparando Rods Array
     searchString = newSearch([/rod/i]);
     filteredCompendium = filterArray(searchString);
     data.Rods = filteredCompendium;
-    // Preparing Throwing Array
+    // Preparando Throwing Array
     searchString = newSearch([/boomerang/i]);
     filteredCompendium = filterArray(searchString);
     data.Throwing = filteredCompendium;
-    // Preparing Shields
+    // Preparando Shields
     searchString = newSearch([/shield/i, /daybreaker/i]);
     filteredCompendium = filterArray(searchString);
     data.Shields = filteredCompendium;
@@ -234,13 +239,11 @@ const VadeMecum = () => {
   };
 
   const makeCompendiumArray = async (
+    // Generamos el array que usaremos para la categoría "All" y las sub-categorías
+    // de Equipment.
     fetchData: TypeBOTWCompendiumResponseData,
   ) => {
     try {
-      /* const compendiumData = compendiumState.compendium
-        ? compendiumState.compendium.data
-        : null; */
-      //const completeArray = compendiumData;
       const completeArray = fetchData
         ? ([
             ...fetchData.data.creatures.food,
@@ -260,6 +263,7 @@ const VadeMecum = () => {
   };
 
   const fetchCompendium = async () => {
+    // Obtenemos los datos de getCompendium.
     try {
       const data = await getCompendium();
       dispatch(setCompendiumFromData(data));
@@ -271,6 +275,10 @@ const VadeMecum = () => {
   };
 
   const preparaData = async () => {
+    // Esta función se ejecuta al principio y se encarga de ir "dictando" los pasos
+    // a seguir para preparar todos los datos.
+    // Dependiendo de si hay o no valores en los campos Search y Select, damos uno
+    // u otro valor a los componentes a renderizar.
     let fetchData = await fetchCompendium();
     let arrayData;
     if (fetchData) {
@@ -296,15 +304,8 @@ const VadeMecum = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* useEffect(() => {
-    
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [compendiumState.compendium]); */
-
-  //
-  // Creating Return Data
-  //
+  // Creamos los datos para devolver. Cada pequeño elemento se renderiza o no según
+  // las condiciones que se den.
   let retData;
   const rHelmet = (
     <Helmet>

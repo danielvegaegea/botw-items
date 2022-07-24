@@ -2,15 +2,12 @@
 import React from 'react';
 // Helmet
 import { HelmetProvider } from 'react-helmet-async';
-
 // Redux
 import { Provider } from 'react-redux';
 import { store } from './store';
-
 // Router
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 // Pages
 import BotwHeader from '../components/BotwHeader';
 import BotwFooter from '../components/BotwFooter';
@@ -20,7 +17,6 @@ import CompendiumPage from '../pages/CompendiumPage';
 import About from '../pages/AboutPage';
 import ErrorPage from '../pages/ErrorPage';
 import CounterPage from '../pages/CounterPage';
-
 //  Styles
 import '../css/normalize.css';
 import '../css/common.css';
