@@ -127,7 +127,7 @@ const fetchCompendiumByIsoCode = async (isoCode: string) => {
     const compendiumElement = await reponse.json();
     return compendiumElement.data;
   } catch (error) {
-    console.error(error);
+    return null;
   }
 };
 
@@ -139,10 +139,22 @@ const CompendiumPage = () => {
   const compendiumState = useAppSelector(selectCompendium);
 
   const getElement = async (id: string) => {
-    // Usa fetchCompendiumByIsoCode para obtener los datos y los almacena.
-    const elementData: TypeCompendiumElement = await fetchCompendiumByIsoCode(
-      id,
-    );
+    let elementData: TypeCompendiumElement;
+    let idData: TypeCompendiumElement | undefined;
+    if (!compendiumState.compendiumArray) {
+      // Usa fetchCompendiumByIsoCode para obtener los datos y los almacena.
+      elementData = await fetchCompendiumByIsoCode(id);
+    } else {
+      const nId = Number(id);
+      idData = compendiumState.compendiumArray.find(
+        (x: TypeCompendiumElement) => x.id === nId,
+      );
+      if (idData !== undefined) {
+        elementData = idData;
+      } else {
+        elementData = await fetchCompendiumByIsoCode(id);
+      }
+    }
     setElement(elementData);
   };
 
@@ -151,6 +163,7 @@ const CompendiumPage = () => {
     if (isoCode) {
       getElement(isoCode);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isoCode]);
 
   // Procesamos los datos y creamos variables o constantes.

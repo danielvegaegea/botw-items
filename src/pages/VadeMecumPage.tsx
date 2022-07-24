@@ -323,7 +323,6 @@ const VadeMecum = () => {
       {compendiumState.elementsToRender &&
         compendiumState.elementsToRender.map(
           (cElement: TypeCompendiumElement) => {
-            // Getting the rest of values from country.
             const { name, image, id }: TypeCompendiumElement = cElement;
             const props = {
               cName: name,

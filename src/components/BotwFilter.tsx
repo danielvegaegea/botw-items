@@ -1,5 +1,5 @@
 // React
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent } from 'react';
 // Redux
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 // Styled Components
