@@ -137,7 +137,7 @@ const getCompendium = async () => {
       (await response.json()) as TypeBOTWCompendiumMasterResponseData;
     return compendiumMaster.data;
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     throw error;
   }
 };
@@ -285,11 +285,11 @@ const CompendiumMasterPage = () => {
   const lastPage: number = idList!.length - 1;
   //console.log(idList);
   //console.log('WARNING');
-  console.log(idList);
+  //console.log(idList);
   //console.log(typeof idList[0]);
-  console.log(isoCode);
+  //console.log(isoCode);
   //console.log(typeof isoCode);
-  console.log(idList!.includes(isoCode!));
+  //console.log(idList!.includes(isoCode!));
   if (idList!.includes(isoCode!)) {
     let prevId, nextId;
 
