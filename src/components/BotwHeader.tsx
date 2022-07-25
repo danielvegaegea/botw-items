@@ -91,6 +91,9 @@ const BotwHeader = () => {
               <StyledLink to="/vade-mecum">Vade Mecum</StyledLink>
             </StyledLi>
             <StyledLi>
+              <StyledLink to="/master-vade-mecum">Master Vade Mecum</StyledLink>
+            </StyledLi>
+            <StyledLi>
               <StyledLink to="/about">About</StyledLink>
             </StyledLi>
           </StyledUl>

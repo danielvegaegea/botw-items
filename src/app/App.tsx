@@ -13,7 +13,9 @@ import BotwHeader from '../components/BotwHeader';
 import BotwFooter from '../components/BotwFooter';
 import Homepage from '../pages/Homepage';
 import VadeMecum from '../pages/VadeMecumPage';
+import MasterVadeMecum from '../pages/VadeMecumMasterPage';
 import CompendiumPage from '../pages/CompendiumPage';
+import CompendiumMasterPage from '../pages/CompendiumMasterPage';
 import About from '../pages/AboutPage';
 import ErrorPage from '../pages/ErrorPage';
 import CounterPage from '../pages/CounterPage';
@@ -33,10 +35,18 @@ const App = () => {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/counter-page" element={<CounterPage />} />
                 <Route path="/vade-mecum" element={<VadeMecum />} />
+                <Route
+                  path="/master-vade-mecum"
+                  element={<MasterVadeMecum />}
+                />
                 <Route path="/about" element={<About />} />
                 <Route
                   path="/compendium/:isoCode"
                   element={<CompendiumPage />}
+                />
+                <Route
+                  path="/master-compendium/:isoCode"
+                  element={<CompendiumMasterPage />}
                 />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>

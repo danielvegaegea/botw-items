@@ -42,6 +42,10 @@ export type TypeBOTWCompendiumResponseData = {
   data: Data;
 };
 
+export type TypeBOTWCompendiumMasterResponseData = {
+  data: TypeBOTWCompendiumArray;
+};
+
 export type TypeBOTWCompendiumArray = [] | null;
 
 export type TypeCompendiumElement =
@@ -51,6 +55,10 @@ export type TypeCompendiumElement =
   | TypeMaterials
   | TypeMonsters
   | TypeTreasure;
+
+type MasterData = {
+  data: TypeMonsters[];
+};
 
 type Data = {
   creatures: {

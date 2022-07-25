@@ -254,6 +254,17 @@ const VadeMecum = () => {
             ...fetchData.data.treasure,
           ] as TypeBOTWCompendiumArray)
         : null;
+      completeArray!.sort(
+        (x: TypeCompendiumElement, y: TypeCompendiumElement) => {
+          if (x.id > y.id) {
+            return 1;
+          }
+          if (x.id < y.id) {
+            return -1;
+          }
+          return 0;
+        },
+      );
       dispatch(setElementsInArray(completeArray));
       return completeArray;
     } catch {
