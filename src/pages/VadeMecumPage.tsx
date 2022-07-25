@@ -254,6 +254,7 @@ const VadeMecum = () => {
             ...fetchData.data.treasure,
           ] as TypeBOTWCompendiumArray)
         : null;
+      // Ordenamos el Array para que apareza siempre de la misma forma al usuario.
       completeArray!.sort(
         (x: TypeCompendiumElement, y: TypeCompendiumElement) => {
           if (x.id > y.id) {

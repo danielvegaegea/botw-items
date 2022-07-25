@@ -128,8 +128,8 @@ const CompendiumMasterFilter = () => {
     value = value.replace(/[~`!@#$%^&()_={}[\]:;,.<>+/?]/g, '');
     dispatch(setSearch(value));
 
-    // utilizando la funcion de ayuda (helper functions) filtramos el array de countries
-    // y devolvemos solo los paises que cumplan el filtro
+    // utilizando la funcion de ayuda (helper functions) filtramos el array del compendio
+    // y devolvemos solo los elementos que cumplan el filtro
     const filteredCompendium = getFilteredCompendium({
       search: value,
     }) as TypeBOTWCompendiumArray;
