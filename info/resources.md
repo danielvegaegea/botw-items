@@ -23,6 +23,9 @@ Background:
 Triforce:
 [SVG Repo.com](https://www.svgrepo.com/svg/323529/triforce)
 
+favicons
+[favicon.cc](https://www.favicon.cc/)
+
 ## Discarded
 
 - [MDX-Js - Markdown for the Component Era](https://mdxjs.com/)

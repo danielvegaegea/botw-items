@@ -39,6 +39,8 @@ The **Vade Mecum** content belongs to [Hyrule Compendium API](https://gadhagod.g
 
 - The Triforce symbol comes from [SVG Repo](https://www.svgrepo.com/svg/323529/triforce).
 
+- The favicon preparation comes from [favicon.cc](https://www.favicon.cc/).
+
 ## About the project
 
 The project was created in [React](https://es.reactjs.org/) with [Create React App](https://create-react-app.dev/) in [TypeScript](https://www.typescriptlang.org/es/), using [React Redux Toolkit](https://redux-toolkit.js.org/), [React Router](https://v5.reactrouter.com/), [React Markdown](https://www.npmjs.com/package/react-markdown), [React Helmet Async](https://www.npmjs.com/package/react-helmet-async), [React Snap](https://www.npmjs.com/package/react-snap) and [Styled Components](https://styled-components.com/). As working framework, I used [Visual Studio Code](https://code.visualstudio.com/).

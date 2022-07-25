@@ -60,6 +60,9 @@ in a more comfortable way.
 - The Triforce symbol comes from
 [SVG Repo](https://www.svgrepo.com/svg/323529/triforce).
 
+- The favicon preparation comes from
+[favicon.cc](https://www.favicon.cc/).
+
 ## About the project
 
 The project was created in [React](https://es.reactjs.org/) with
