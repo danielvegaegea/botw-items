@@ -137,7 +137,7 @@ const getCompendium = async () => {
       (await response.json()) as TypeBOTWCompendiumMasterResponseData;
     return compendiumMaster.data;
   } catch (error) {
-    //console.log(error);
+    console.log(error);
     throw error;
   }
 };
@@ -162,8 +162,8 @@ const CompendiumMasterPage = () => {
   const dispatch = useAppDispatch();
   const { isoCode } = useParams();
   const compendiumState = useAppSelector(selectCompendiumMaster);
-
   const launcher = async () => {
+    // Esta función se encarga de invocar a las demás en orden.
     let masterArray: TypeBOTWCompendiumArray;
     if (isoCode) {
       masterArray = await getElement(isoCode);
@@ -195,37 +195,35 @@ const CompendiumMasterPage = () => {
       masterArray = compendiumState.compendiumMasterArray;
     }
     const nId = Number(id);
-    idData = masterArray?.find((x: TypeCompendiumElement) => x.id === nId);
+    idData = masterArray!.find((x: TypeCompendiumElement) => x.id === nId);
     if (idData !== undefined) {
       elementData = idData;
     } else {
       elementData = await fetchCompendiumByIsoCode(id);
     }
-    setElement(elementData);
+    setElement(elementData!);
     return masterArray;
   };
 
   const createIdArray = async (masterArray: TypeBOTWCompendiumArray) => {
+    // Genera un array con las ids de los cinco elementos que hay, para facilitar
+    // la navegación usando las flechas en la página.
     let idList: string[];
     idList = masterArray!.map((cElement: TypeCompendiumElement) => {
       const data = cElement.id;
       return data.toString(10);
     });
-    //console.log('idlist');
-    //console.log(typeof idList);
     dispatch(setIdArray(idList));
   };
 
   useEffect(() => {
-    // Llamamos a la función getElement si tenemos isoCode.
+    // invocamos launcher
     launcher();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isoCode]);
 
   // Procesamos los datos y creamos variables o constantes.
-  //    Preparando pElement
-  //let pElement: TypeGenericElement;
-  //pElement = element ? element : null;
+
   //    Common elements
   const eName = capitalizeWords(element ? element.name : '-');
   const eImage = element ? element.image : '';
@@ -268,29 +266,33 @@ const CompendiumMasterPage = () => {
   // a estas alturas para ahorrarnos el obtenerlos del Array. Este caso, solo se
   // produciría si el usuario intentara entrar desde un enlace a un elemento en
   // concreto.
-  const nId = Number(isoCode!);
+  let nId: number;
+  let sId: string;
+
+  if (isoCode) {
+    nId = Number(isoCode!);
+    sId = isoCode!;
+  } else {
+    nId = 0;
+    sId = '0';
+  }
+
   const pageId = compendiumState.compendiumMasterArray?.findIndex(
     (x: TypeCompendiumElement) => x.id === nId,
   );
 
-  //console.log(idList);
-
   let content;
-  /* const lastPage: number = compendiumState?.compendiumMasterArray
-    ? compendiumState?.compendiumMasterArray?.length
-    : 389; */
-  let idList = compendiumState.idArray;
-  //console.log('array');
-  //console.log(typeof compendiumState.idArray[0]);
+
+  // La parte hardcodeada que no he sabido evitar. De todas formas la API no se
+  // espera que cambie.
+  let idList = ['97', '109', '115', '124', '129'];
+  if (typeof compendiumState.idArray !== 'object') {
+    idList = compendiumState.idArray;
+  }
+
   const lastPage: number = idList!.length - 1;
-  //console.log(idList);
-  //console.log('WARNING');
-  //console.log(idList);
-  //console.log(typeof idList[0]);
-  //console.log(isoCode);
-  //console.log(typeof isoCode);
-  //console.log(idList!.includes(isoCode!));
-  if (idList!.includes(isoCode!)) {
+
+  if (idList!.includes(sId)) {
     let prevId, nextId;
 
     if (pageId === 0) {
@@ -304,101 +306,101 @@ const CompendiumMasterPage = () => {
       nextId = idList![pageId! + 1];
     }
 
-    //if (Element) {
-    // Solo se renderiza si tenemos element.
-    content = (
-      <>
-        <Helmet>
-          <title>BOTW Vade Mecum: {eName}</title>
-        </Helmet>
-        <StyledCompendiumPage className="zelda-window">
-          <Link to={`/master-vade-mecum`}>
-            <StyledUpArrow className="left-arrow arrow">
-              <div>
-                <img
-                  src={botwArrow}
-                  className="counter-logo"
-                  alt="Breath of the Wild Logo"
-                />
-              </div>
-            </StyledUpArrow>
-          </Link>
-          <StyledCompendiumTittle>
-            <Link to={`/master-compendium/${prevId}`}>
-              <StyledLeftArrow className="left-arrow arrow">
-                <img
-                  src={botwArrow}
-                  className="counter-logo"
-                  alt="Breath of the Wild Logo"
-                />
-              </StyledLeftArrow>
+    if (element) {
+      // Solo se renderiza si tenemos element.
+      content = (
+        <>
+          <Helmet>
+            <title>BOTW Vade Mecum: {eName}</title>
+          </Helmet>
+          <StyledCompendiumPage className="zelda-window">
+            <Link to={`/master-vade-mecum`}>
+              <StyledUpArrow className="left-arrow arrow">
+                <div>
+                  <img
+                    src={botwArrow}
+                    className="counter-logo"
+                    alt="Breath of the Wild Logo"
+                  />
+                </div>
+              </StyledUpArrow>
             </Link>
-            <h2>
-              {pageId! + 1}: {eName}
-            </h2>
-            <Link to={`/master-compendium/${nextId}`}>
-              <StyledRightArrow className="left-arrow arrow">
-                <img
-                  src={botwArrow}
-                  className="counter-logo"
-                  alt="Breath of the Wild Logo"
-                />
-              </StyledRightArrow>
-            </Link>
-          </StyledCompendiumTittle>
-          <article>
-            <div className="picture-container">
-              <picture className="zelda-window">
-                <img src={eImage} alt={eName} />
-              </picture>
-            </div>
-            <section className="element-info zelda-window">
-              <div>
-                <h3>Category:</h3>
-                <p>{eCategory}</p>
+            <StyledCompendiumTittle>
+              <Link to={`/master-compendium/${prevId}`}>
+                <StyledLeftArrow className="left-arrow arrow">
+                  <img
+                    src={botwArrow}
+                    className="counter-logo"
+                    alt="Breath of the Wild Logo"
+                  />
+                </StyledLeftArrow>
+              </Link>
+              <h2>
+                {pageId! + 1}: {eName}
+              </h2>
+              <Link to={`/master-compendium/${nextId}`}>
+                <StyledRightArrow className="left-arrow arrow">
+                  <img
+                    src={botwArrow}
+                    className="counter-logo"
+                    alt="Breath of the Wild Logo"
+                  />
+                </StyledRightArrow>
+              </Link>
+            </StyledCompendiumTittle>
+            <article>
+              <div className="picture-container">
+                <picture className="zelda-window">
+                  <img src={eImage} alt={eName} />
+                </picture>
               </div>
-              <div>
-                <h3>Description:</h3>
-                <p>{eDescription}</p>
-              </div>
-              <div>
-                <h3>Common Location:</h3>
-                <p>{eLocation[0]}</p>
-                <p>{eLocation[1]}</p>
-                <p>{eLocation[2]}</p>
-              </div>
-              <h3>{eLabel[0]}</h3>
-              <p>{eLabel[1]}</p>
-              {hLabel.length > 0 && <h3>{hLabel}</h3>}
-              <p>{eLabel[2]}</p>
-              <p>{eLabel[3]}</p>
-              <p>{eLabel[4]}</p>
-              <p>{eLabel[5]}</p>
-              <p>{eLabel[6]}</p>
-              <p>{eLabel[7]}</p>
-              <p>{eLabel[8]}</p>
-              <p>{eLabel[9]}</p>
-              <p>{eLabel[10]}</p>
-              <p>{eLabel[11]}</p>
-              <p>{eLabel[12]}</p>
-            </section>
-          </article>
-        </StyledCompendiumPage>
-      </>
-    );
+              <section className="element-info zelda-window">
+                <div>
+                  <h3>Category:</h3>
+                  <p>{eCategory}</p>
+                </div>
+                <div>
+                  <h3>Description:</h3>
+                  <p>{eDescription}</p>
+                </div>
+                <div>
+                  <h3>Common Location:</h3>
+                  <p>{eLocation[0]}</p>
+                  <p>{eLocation[1]}</p>
+                  <p>{eLocation[2]}</p>
+                </div>
+                <h3>{eLabel[0]}</h3>
+                <p>{eLabel[1]}</p>
+                {hLabel.length > 0 && <h3>{hLabel}</h3>}
+                <p>{eLabel[2]}</p>
+                <p>{eLabel[3]}</p>
+                <p>{eLabel[4]}</p>
+                <p>{eLabel[5]}</p>
+                <p>{eLabel[6]}</p>
+                <p>{eLabel[7]}</p>
+                <p>{eLabel[8]}</p>
+                <p>{eLabel[9]}</p>
+                <p>{eLabel[10]}</p>
+                <p>{eLabel[11]}</p>
+                <p>{eLabel[12]}</p>
+              </section>
+            </article>
+          </StyledCompendiumPage>
+        </>
+      );
+    } else {
+      // Mientras no esté, mostramos un mensaje de carga.
+      content = (
+        <>
+          <Helmet>
+            <title>BOTW Vade Mecum: {eName}</title>
+          </Helmet>
+          <h2 className="zelda-window">Hey, Listen!: Loading...</h2>
+        </>
+      );
+    }
+    return content;
   } else {
-    // Mientras no esté, mostramos un mensaje de carga.
-    content = (
-      <>
-        <Helmet>
-          <title>BOTW Vade Mecum: {eName}</title>
-        </Helmet>
-        <h2 className="zelda-window">Hey, Listen!: Loading...</h2>
-      </>
-    );
-  }
-  return content;
-  /* } else {
     // Mensaje de error en caso de que introduzcamos una id como isoCode que no
     // aparezca en la lista.
     return (
@@ -415,6 +417,6 @@ const CompendiumMasterPage = () => {
         </StyledErrorPage>
       </>
     );
-  } */
+  }
 };
 export default CompendiumMasterPage;

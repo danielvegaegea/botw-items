@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import {
   selectCompendiumMaster,
   setCompendiumMasterFromData,
+  setIdArray,
   setElementsToRender,
   setError,
 } from '../features/hyruleCompendiumMaster/hyruleCompendiumMasterSlice';
@@ -95,6 +96,16 @@ const VadeMecumMaster = () => {
   //
   // Sub-Functions
   //
+  const createIdArray = async (masterArray: TypeBOTWCompendiumArray) => {
+    // Genera un array con las ids de los cinco elementos que hay, para facilitar
+    // la navegación usando las flechas en la página.
+    let idList: string[];
+    idList = masterArray!.map((cElement: TypeCompendiumElement) => {
+      const data = cElement.id;
+      return data.toString(10);
+    });
+    dispatch(setIdArray(idList));
+  };
   const makeCompendiumToRender = async (arrayData: TypeBOTWCompendiumArray) => {
     // Si tenemos data, establecemos ElementsToRender.
     try {
@@ -134,6 +145,7 @@ const VadeMecumMaster = () => {
     let fetchData = await fetchCompendium();
     if (compendiumState.search === '') {
       await makeCompendiumToRender(fetchData as TypeBOTWCompendiumArray);
+      createIdArray(fetchData as TypeBOTWCompendiumArray);
     }
   };
 
@@ -150,7 +162,7 @@ const VadeMecumMaster = () => {
   let retData;
   const rHelmet = (
     <Helmet>
-      <title>BOTW Compendium: Vade Mecum Master</title>
+      <title>BOTW Compendium: Master Vade Mecum</title>
     </Helmet>
   );
 
